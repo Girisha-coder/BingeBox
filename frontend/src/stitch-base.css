@@ -1,0 +1,509 @@
+/* Shared application layout and motion for the sole Stitch interface. */
+:root[data-theme="stitch"] {
+  --ink: #000000;
+  --panel: #000000;
+  --muted: rgb(255 255 255 / 70%);
+  --accent: #4f5cd8;
+  --line: rgb(255 255 255 / 20%);
+  color: #ffffff;
+  background: #000000;
+}
+
+/* Text stays white on black. Indigo is used as a fill or accent, not small text. */
+html[data-theme="stitch"]
+  :is(
+    em,
+    .brand span,
+    header nav a:hover,
+    header nav a.active,
+    .eyebrow,
+    .hero-note > span,
+    .poster-word,
+    .notice,
+    .error,
+    .empty a,
+    .review span,
+    .episode-no,
+    .staff-badge span,
+    .danger
+  ) {
+  color: #ffffff;
+}
+html[data-theme="stitch"]
+  :is(
+    .lede,
+    .hero-note p,
+    .hero-note small,
+    .count,
+    label,
+    .card p,
+    .pagination,
+    .empty,
+    .loading,
+    .plan-number,
+    .plan ul,
+    .metadata,
+    .tags,
+    .review p,
+    .player-info,
+    footer p,
+    footer small
+  ) {
+  color: var(--muted);
+}
+html[data-theme="stitch"] .tags span + span::before {
+  color: var(--muted);
+}
+html[data-theme="stitch"] .hero h1 em {
+  text-decoration: underline;
+  text-decoration-color: #4f5cd8;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 12px;
+}
+html[data-theme="stitch"] header nav a.active {
+  box-shadow: 0 2px #4f5cd8;
+}
+html[data-theme="stitch"] .hero-note {
+  border-left-color: #4f5cd8;
+  border-left-width: 2px;
+}
+html[data-theme="stitch"] .text-link {
+  border-bottom-color: rgb(255 255 255 / 55%);
+}
+html[data-theme="stitch"] :is(button, .button, .skip) {
+  background: #4f5cd8;
+  color: #ffffff;
+  border-color: transparent;
+}
+html[data-theme="stitch"] :is(button:hover, .button:hover) {
+  background: #4f5cd8;
+  border-color: #ffffff;
+}
+html[data-theme="stitch"] .quiet {
+  background: #000000;
+  color: #ffffff;
+  border-color: rgb(255 255 255 / 40%);
+}
+html[data-theme="stitch"] .quiet:hover {
+  background: #4f5cd8;
+  border-color: #ffffff;
+}
+html[data-theme="stitch"]
+  :is(a, button, input, select, textarea, summary):focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
+}
+html[data-theme="stitch"] :is(input, select, textarea) {
+  background: #000000;
+  color: #ffffff;
+  border-color: rgb(255 255 255 / 40%);
+  accent-color: #4f5cd8;
+}
+html[data-theme="stitch"] input::placeholder {
+  color: rgb(255 255 255 / 60%);
+}
+html[data-theme="stitch"] .advanced[open] > div {
+  background: #000000;
+  border-color: rgb(255 255 255 / 40%);
+}
+html[data-theme="stitch"] :is(.poster, .avatar) {
+  --poster: #000000;
+  --light: #ffffff;
+  background: #000000;
+  border-color: rgb(255 255 255 / 30%);
+}
+html[data-theme="stitch"] .poster::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: #4f5cd8;
+}
+html[data-theme="stitch"] .poster-foot {
+  color: rgb(255 255 255 / 70%);
+  border-top-color: rgb(255 255 255 / 30%);
+}
+html[data-theme="stitch"] :is(.card:hover .poster, .avatar:hover) {
+  background: #000000;
+  border-color: #ffffff;
+}
+html[data-theme="stitch"] :is(.notice, .error) {
+  background: #000000;
+  border-color: #4f5cd8;
+  border-left-width: 4px;
+}
+html[data-theme="stitch"] .error {
+  border-left-color: #ffffff;
+}
+html[data-theme="stitch"] .plan {
+  background: #000000;
+  border-color: var(--line);
+}
+html[data-theme="stitch"] .plan.featured {
+  background: #000000;
+  border-color: #4f5cd8;
+  box-shadow: inset 0 3px #4f5cd8;
+}
+html[data-theme="stitch"] :is(.plan li, .badge, th, td) {
+  border-color: var(--line);
+}
+html[data-theme="stitch"] :is(th, td) {
+  background: #000000;
+  color: #ffffff;
+}
+html[data-theme="stitch"] th {
+  border-bottom-color: #4f5cd8;
+}
+html[data-theme="stitch"] tbody tr:hover td {
+  background: #4f5cd8;
+}
+html[data-theme="stitch"] .player-page video {
+  background: #000000;
+  border-color: var(--line);
+}
+html[data-theme="stitch"] ::selection {
+  background: #4f5cd8;
+  color: #ffffff;
+}
+
+:root[data-theme="stitch"] {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  --ink: #080a10;
+  --panel: #11151f;
+  --accent: #4f5cd8;
+  --muted: #a5adbc;
+  --line: #ffffff19;
+  background: var(--ink);
+  color: #f6f8fc;
+  font-feature-settings: "kern" 1;
+}
+html[data-theme="stitch"] :is(h1, h2, .brand) {
+  font-family: Syne, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+}
+html[data-theme="stitch"] h2 {
+  font-size: clamp(1.2rem, 1.9vw, 1.75rem);
+  line-height: 1.35;
+}
+html[data-theme="stitch"] h3 {
+  font-weight: 600;
+}
+html[data-theme="stitch"] em {
+  font-style: normal;
+  font-weight: inherit;
+}
+html[data-theme="stitch"] header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  max-width: none;
+  height: 78px;
+  gap: 60px;
+  padding: 0 5.5%;
+  background: rgb(8 10 16 / 94%);
+  backdrop-filter: blur(16px);
+  border-color: var(--line);
+}
+html[data-theme="stitch"] .brand {
+  font-size: 21px;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 700;
+  letter-spacing: -0.06em;
+}
+html[data-theme="stitch"] .brand span {
+  color: var(--accent);
+}
+html[data-theme="stitch"] .brand::before {
+  content: "";
+  width: 25px;
+  height: 25px;
+  border: 6px solid var(--accent);
+  border-right-color: #2c3480;
+  border-radius: 50%;
+  margin-right: 12px;
+  transform: rotate(-35deg);
+}
+html[data-theme="stitch"] header nav a {
+  padding: 27px 0;
+  transition: color 160ms;
+  white-space: nowrap;
+}
+html[data-theme="stitch"] header nav a.active {
+  padding-bottom: 27px;
+  box-shadow: 0 2px var(--accent);
+}
+html[data-theme="stitch"] main {
+  max-width: none;
+}
+html[data-theme="stitch"] .section {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 56px 5.5%;
+  scroll-margin-top: 90px;
+}
+html[data-theme="stitch"] .page {
+  padding-top: 65px;
+}
+html[data-theme="stitch"] :is(button, .button, .skip) {
+  border-radius: 3px;
+  background: var(--accent);
+  color: #031316;
+  border-color: transparent;
+  font-weight: 600;
+  transition:
+    transform 180ms,
+    background 180ms,
+    border-color 180ms,
+    box-shadow 180ms;
+}
+html[data-theme="stitch"] :is(button, .button):hover {
+  background: #6ef3fc;
+  border-color: transparent;
+  box-shadow: 0 5px 25px #4f5cd820;
+}
+html[data-theme="stitch"] :is(button, .button):active {
+  transform: scale(0.97);
+}
+html[data-theme="stitch"] .quiet {
+  color: #fff;
+  border: 1px solid #ffffff25;
+  background: #ffffff09;
+}
+html[data-theme="stitch"] .quiet:hover {
+  color: #fff;
+  background: #ffffff19;
+  border-color: #ffffff70;
+}
+html[data-theme="stitch"] :is(input, select, textarea) {
+  background: #10131b;
+  border-color: #ffffff30;
+  border-radius: 4px;
+}
+html[data-theme="stitch"] :is(input, select, textarea):focus-visible {
+  outline-color: var(--accent);
+}
+html[data-theme="stitch"] .eyebrow {
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+html[data-theme="stitch"] .cards {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 28px 22px;
+}
+html[data-theme="stitch"] .card {
+  min-width: 0;
+}
+html[data-theme="stitch"] .card h3 {
+  margin-top: 13px;
+  margin-bottom: 6px;
+  overflow-wrap: anywhere;
+}
+html[data-theme="stitch"] .card p {
+  font-size: 0.73rem;
+}
+html[data-theme="stitch"] .poster {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  isolation: isolate;
+  background: #11151f;
+  border: 1px solid #ffffff14;
+  border-radius: 5px;
+  transition:
+    transform 320ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-color 200ms;
+}
+html[data-theme="stitch"] .poster::before {
+  display: none;
+}
+html[data-theme="stitch"] .poster::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #080a1060, transparent 35%, #080a1060);
+  pointer-events: none;
+}
+html[data-theme="stitch"] .poster :is(.poster-word, .poster-foot) {
+  display: none;
+}
+html[data-theme="stitch"] .poster-index {
+  position: relative;
+  z-index: 1;
+  font-size: 0.5rem;
+  letter-spacing: 0.08em;
+  color: #fff;
+  background: #080a1099;
+  padding: 4px 6px;
+  align-self: flex-start;
+}
+html[data-theme="stitch"] .cinema-artwork {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+html[data-theme="stitch"] .card:is(:hover, :focus-visible) .poster {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+}
+html[data-theme="stitch"] .card:is(:hover, :focus-visible) .cinema-artwork {
+  transform: scale(1.055);
+}
+html[data-theme="stitch"] .home-rows .cards {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: none;
+  grid-auto-columns: minmax(210px, 24%);
+  overflow-x: auto;
+  padding: 10px 2px 20px;
+  scroll-snap-type: x proximity;
+  scrollbar-color: #344156 #080a10;
+}
+html[data-theme="stitch"] .home-rows .card {
+  scroll-snap-align: start;
+}
+html[data-theme="stitch"] .home-rows .poster {
+  aspect-ratio: 16 / 10;
+}
+html[data-theme="stitch"] progress {
+  accent-color: var(--accent);
+}
+html[data-theme="stitch"] .plan {
+  background: var(--panel);
+}
+html[data-theme="stitch"] .plan.featured {
+  background: #101d29;
+  border-color: var(--accent);
+  box-shadow: inset 0 3px var(--accent);
+}
+html[data-theme="stitch"] :is(th, td) {
+  background: var(--panel);
+}
+html[data-theme="stitch"] tbody tr:hover td {
+  background: #16303a;
+}
+html[data-theme="stitch"] .auth-page {
+  max-width: 1300px;
+  margin-inline: auto;
+}
+html[data-theme="stitch"] footer {
+  max-width: 1440px;
+  padding-inline: 5.5%;
+  gap: 24px;
+}
+html[data-theme="stitch"] .text-link {
+  border-color: #ffffff40;
+}
+html[data-theme="stitch"] [data-cinema-reveal] {
+  transition:
+    opacity 500ms ease-out var(--reveal-delay, 0ms),
+    translate 500ms cubic-bezier(0.2, 0.7, 0.2, 1) var(--reveal-delay, 0ms);
+}
+html[data-theme="stitch"] [data-cinema-reveal="pending"] {
+  opacity: 0;
+  translate: 0 22px;
+}
+html[data-theme="stitch"] [data-cinema-reveal="visible"] {
+  opacity: 1;
+  translate: 0 0;
+}
+@keyframes cinema-art-enter {
+  from {
+    opacity: 0.3;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes cinema-copy-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1100px) {
+  html[data-theme="stitch"] header {
+    gap: 30px;
+  }
+  html[data-theme="stitch"] header nav {
+    gap: 20px;
+  }
+  html[data-theme="stitch"] .cards {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (max-width: 780px) {
+  html[data-theme="stitch"] header {
+    height: auto;
+    min-height: 78px;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    padding-block: 15px;
+  }
+  html[data-theme="stitch"] header nav {
+    order: 3;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  html[data-theme="stitch"] header nav a,
+  html[data-theme="stitch"] header nav a.active {
+    padding: 8px 0;
+  }
+  html[data-theme="stitch"] .cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px 16px;
+  }
+}
+@media (max-width: 520px) {
+  html[data-theme="stitch"] .brand {
+    font-size: 18px;
+  }
+  html[data-theme="stitch"] .brand::before {
+    width: 23px;
+    height: 23px;
+    margin-right: 8px;
+  }
+  html[data-theme="stitch"] .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px 14px;
+  }
+  html[data-theme="stitch"] .section {
+    padding: 40px 6%;
+    scroll-margin-top: 135px;
+  }
+  html[data-theme="stitch"] .poster-index {
+    font-size: 0.43rem;
+    padding: 3px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme="stitch"] {
+    scroll-behavior: auto;
+  }
+  html[data-theme="stitch"] *,
+  html[data-theme="stitch"] *::before,
+  html[data-theme="stitch"] *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  html[data-theme="stitch"] [data-cinema-reveal] {
+    opacity: 1;
+    translate: none;
+  }
+  html[data-theme="stitch"]
+    .card:is(:hover, :focus-visible)
+    :is(.poster, .cinema-artwork) {
+    transform: none;
+  }
+}

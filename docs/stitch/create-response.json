@@ -1,0 +1,19 @@
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": {
+    "content": [
+      {
+        "text": "{\"name\":\"projects/10648150967291044792\",\"title\":\"BingeBox \u2014 Independent Motion Concepts\",\"visibility\":\"PRIVATE\",\"projectType\":\"PROJECT_DESIGN\",\"origin\":\"STITCH\"}",
+        "type": "text"
+      }
+    ],
+    "structuredContent": {
+      "name": "projects/10648150967291044792",
+      "origin": "STITCH",
+      "projectType": "PROJECT_DESIGN",
+      "title": "BingeBox \u2014 Independent Motion Concepts",
+      "visibility": "PRIVATE"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "file": "night-city.webp",
+    "source": "https://images.unsplash.com/photo-1672872476232-da16b45c9001?crop=entropy&cs=srgb&fm=jpg&q=80&w=1920",
+    "bytes": 248106,
+    "use": "Illustrative atmosphere, not official film artwork",
+    "original_file": "night-city.jpg",
+    "served_bytes": 81310
+  },
+  {
+    "file": "blue-world.webp",
+    "source": "https://images.pexels.com/photos/7662470/pexels-photo-7662470.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    "bytes": 362741,
+    "use": "Illustrative atmosphere, not official film artwork",
+    "original_file": "blue-world.jpg",
+    "served_bytes": 146284
+  },
+  {
+    "file": "signal.webp",
+    "source": "https://images.unsplash.com/photo-1628763228722-b11a9c545ed7?crop=entropy&cs=srgb&fm=jpg&q=80&w=1400",
+    "bytes": 851610,
+    "use": "Illustrative atmosphere, not official film artwork",
+    "original_file": "signal.jpg",
+    "served_bytes": 318878
+  },
+  {
+    "file": "afterlight.webp",
+    "source": "https://images.unsplash.com/photo-1784401930662-b9e573c8d79e?crop=entropy&cs=srgb&fm=jpg&q=80&w=1400",
+    "bytes": 34028,
+    "use": "Illustrative atmosphere, not official film artwork",
+    "original_file": "afterlight.jpg",
+    "served_bytes": 11902
+  }
+]

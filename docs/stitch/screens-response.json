@@ -1,0 +1,32 @@
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": {
+    "content": [
+      {
+        "text": "{\"screens\":[{\"name\":\"projects/10648150967291044792/screens/8d1e6e4256af47d09fe6f66359415466\",\"title\":\"BingeBox - Cinematic Desktop Discovery & Viewing\",\"screenshot\":{\"name\":\"projects/10648150967291044792/files/0fd6722f4aed48759cabe72fa4db7b0e\",\"downloadUrl\":\"https://lh3.googleusercontent.com/aida/AEtjO1XJYeZNbz_7_-5jEFESUIWzeduJc8rht89KCoJAtLPbXl_48FbLu5d99aat0v6LE5QGINmq5X6TP7XvTW82E-87WrPosySWCNdFs8VOA8REFI6SHxl847LlkiFoNd-KNYaIobjFAvqOtX6HERuTh6PQLZb8uWoIgDpe4eQHcg7_II0aLgpBEtoECwxJTC880uca--LbTgV6am0ZWzWvFcH-iG4P1nKmchdgAivl1mCmCW-teWFKCMzIDL7H\"},\"htmlCode\":{\"name\":\"projects/10648150967291044792/files/14fe79a185b64d6881387c22693fd5e5\",\"downloadUrl\":\"https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sXzA1MmIwYzZmY2M4MDQ5ZTE4OWZjOTFhOWU1ZmQ1MTY3EgsSBxDVj-CtpgUYAZIBJAoKcHJvamVjdF9pZBIWQhQxMDY0ODE1MDk2NzI5MTA0NDc5Mg&filename=&opi=96797242\",\"mimeType\":\"text/html\"},\"width\":\"2560\",\"height\":\"5262\",\"deviceType\":\"DESKTOP\"}]}",
+        "type": "text"
+      }
+    ],
+    "structuredContent": {
+      "screens": [
+        {
+          "deviceType": "DESKTOP",
+          "height": "5262",
+          "htmlCode": {
+            "downloadUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sXzA1MmIwYzZmY2M4MDQ5ZTE4OWZjOTFhOWU1ZmQ1MTY3EgsSBxDVj-CtpgUYAZIBJAoKcHJvamVjdF9pZBIWQhQxMDY0ODE1MDk2NzI5MTA0NDc5Mg&filename=&opi=96797242",
+            "mimeType": "text/html",
+            "name": "projects/10648150967291044792/files/14fe79a185b64d6881387c22693fd5e5"
+          },
+          "name": "projects/10648150967291044792/screens/8d1e6e4256af47d09fe6f66359415466",
+          "screenshot": {
+            "downloadUrl": "https://lh3.googleusercontent.com/aida/AEtjO1XJYeZNbz_7_-5jEFESUIWzeduJc8rht89KCoJAtLPbXl_48FbLu5d99aat0v6LE5QGINmq5X6TP7XvTW82E-87WrPosySWCNdFs8VOA8REFI6SHxl847LlkiFoNd-KNYaIobjFAvqOtX6HERuTh6PQLZb8uWoIgDpe4eQHcg7_II0aLgpBEtoECwxJTC880uca--LbTgV6am0ZWzWvFcH-iG4P1nKmchdgAivl1mCmCW-teWFKCMzIDL7H",
+            "name": "projects/10648150967291044792/files/0fd6722f4aed48759cabe72fa4db7b0e"
+          },
+          "title": "BingeBox - Cinematic Desktop Discovery & Viewing",
+          "width": "2560"
+        }
+      ]
+    }
+  }
+}

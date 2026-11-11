@@ -1,0 +1,46 @@
+{
+  "database_version": "16.15 (Debian 16.15-1.pgdg12+2)",
+  "dataset": {
+    "total_rows": 840,
+    "tables": {
+      "plan": 5,
+      "admin_user": 3,
+      "account": 12,
+      "subscription": 16,
+      "profile": 18,
+      "stream_session": 8,
+      "title": 162,
+      "movie": 159,
+      "series": 3,
+      "episode": 12,
+      "genre": 21,
+      "title_genre": 343,
+      "title_audio": 15,
+      "title_subtitle": 10,
+      "media_asset": 21,
+      "watch_history": 23,
+      "title_review": 6,
+      "episode_rating": 3
+    },
+    "as_of": "2026-10-20",
+    "consistency_checks_passed": 11
+  },
+  "source_columns": 99,
+  "views": 4,
+  "titles_without_genres": 0,
+  "deferred_genre_guards": 2,
+  "temporary_test_databases_remaining": 0,
+  "markdown_files_checked": 21,
+  "local_links_checked": 92,
+  "non_git": true,
+  "no_venv": true,
+  "media_files_verified": 86,
+  "media_total_bytes": 630500970,
+  "reference_markdown_sha256": "20bbd2432cf081e3e66a34968da2ebf399a1fecbaede74f92bc319303b55d547",
+  "http_statuses": {
+    "http://localhost:18080/": 200,
+    "http://localhost:18080/api/health/ready": 200,
+    "http://localhost:18000/health/ready": 200,
+    "http://localhost:18080/api/catalog": 200
+  }
+}

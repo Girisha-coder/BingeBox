@@ -1,0 +1,540 @@
+{
+  "outputComponents": [
+    {
+      "designSystem": {
+        "designSystem": {
+          "displayName": "Cinematic Obsidian",
+          "styleGuidelines": "## Brand & Style\n\nThis design system establishes an ultra-premium, cinematic streaming environment tailored for cinephiles, entertainment connoisseurs, and contemporary viewers who expect immersion over utility clutter. The interface disappears behind the content, evoking the physical ambiance of an elite private screening room\u2014dark, focused, and acoustically pure.\n\nThe design language balances **Editorial Minimalism** with **Luminous Glassmorphism**. Layouts leverage expansive aspect-ratio viewports, deliberate micro-borders, deep canvas layering, and focused bursts of electric indigo to signal interactivity. Every frame feels intentional, high-production, and dignified. Visual noise is aggressively eliminated to maximize dynamic range between the deep canvas and rich key art.\n\n## Layout & Spacing\n\nThe layout is built upon a flexible 12-column fluid grid system paired with horizontal scroll carousels that bleed past margins to cue continuous discovery.\n\n- **Desktop (1440px+):** 12-column grid, `3.5rem` canvas margins, and `1.5rem` gutters. Content rows use generous vertical separation (`space-xl` or `4rem`) to allow cover art to breathe.\n- **Tablet (768px \u2013 1439px):** 8-column layout with `2rem` outer padding, collapsing hero banners into centered 16:9 cinematic spotlights.\n- **Mobile (< 768px):** 4-column layout with `1.25rem` margins and `1rem` gutters. Navigation docks to a glassmorphic bottom bar, and poster rails default to a multi-card peek ratio.\n- **Edge Bleed:** Horizontal rails must break past right-side page margins by half a card width, inviting swipe and scroll behavior.\n\n## Elevation & Depth\n\nSpatial depth is achieved through structural layering and optical luminance rather than heavy drop shadows.\n\n- **Obsidian Tiering:**\n  - **Base Canvas:** Pure Black (`#000000`) represents resting space and infinite edge transitions.\n  - **Surface Level 1:** Deep Obsidian (`#0A0C16`) forms card backings, side rails, and drawer panels.\n  - **Surface Level 2:** Mid Obsidian (`#121528`) handles hover surfaces and expanded modals.\n  - **Surface Level 3:** Elevated Slate (`#181C38`) serves nested components, badge grounds, and tooltip overlays.\n- **Micro-Borders:** Every surface tier is delimited by a 1px hairline border (`rgba(255, 255, 255, 0.08)` on rest; `rgba(79, 92, 216, 0.6)` on focus).\n- **Glassmorphism Layers:** Floating header bars and overlay badges utilize translucent backdrops (`rgba(10, 12, 22, 0.75)`) combined with an active `20px` background blur.\n- **Indigo Atmospheric Glow:** Focused or active elements project an ambient diffuse aura: `box-shadow: 0 0 32px -4px rgba(79, 92, 216, 0.35)`.\n\n## Components\n\n### Buttons\n- **Primary Action (Play / Resume):** High-contrast pure white fill (`#FFFFFF`) with deep black text (`#000000`), pill shape, bold weight, with an electric indigo shadow on hover.\n- **Secondary Action (Add to List / Info):** Translucent glass fill (`rgba(255, 255, 255, 0.08)`), pure white text, 1px perimeter border (`rgba(255, 255, 255, 0.15)`), shifting to solid slate border on hover.\n- **Icon / Control Pills:** Circular or pill-shaped, `44px` minimum hit area, housing SVG icons centered with strict 1:1 ratios.\n\n### Cards (Film Ratios)\n- **Portrait Poster (2:3 Ratio):** Standard catalog card. Features smooth zoom on hover (`scale 1.03`), glowing indigo border outline, and a bottom gradient vignette revealing metadata on hover.\n- **Landscape Backdrop (16:9 Ratio):** Episode selections, watch history, and documentary formats. Includes integrated progress scrub bar pinned to the bottom border (`#4F5CD8` fill over `#181C38` base).\n- **Featured Billboard (21:9 or 16:9 Dynamic):** Hero canvas card featuring seamless right-and-bottom opacity mask bleeding into `#000000`.\n\n### Chips & Badges\n- **Technical Badges (4K, HDR, Dolby):** Frosted capsule with 1px border (`rgba(255, 255, 255, 0.12)`), uppercase `label-caps` typography, `space-xs` vertical and `space-sm` horizontal padding.\n- **Editorial Chips (Genres, Moods):** Interactive pill shapes, low-contrast slate background, transforming to electric indigo on selection.\n\n### Form Inputs & Search\n- **Search Bar:** Pill-shaped glass container (`rgba(18, 21, 40, 0.8)`) with `1px` border (`rgba(255, 255, 255, 0.1)`), glowing electric indigo hairline on focus.\n- **Checkboxes & Radios:** `20px` squircle (`4px` radius) or circle, solid `#121528` background with an active indigo fill and check glyph.\n\n### Scrubbers & Sliders\n- Minimal `4px` height track in deep obsidian (`#181C38`), active timeline highlighted in electric indigo (`#4F5CD8`), and an elevated `12px` circular white scrubbing thumb with glow accent.",
+          "theme": {
+            "bodyFont": "PLUS_JAKARTA_SANS",
+            "bodyFontFamily": "Plus Jakarta Sans",
+            "colorMode": "DARK",
+            "colorVariant": "FIDELITY",
+            "customColor": "#4f5cd8",
+            "designMd": "---\nname: Cinematic Obsidian\ncolors:\n  surface: '#11131d'\n  surface-dim: '#11131d'\n  surface-bright: '#373844'\n  surface-container-lowest: '#0c0e18'\n  surface-container-low: '#191b26'\n  surface-container: '#1d1f2a'\n  surface-container-high: '#282934'\n  surface-container-highest: '#323440'\n  on-surface: '#e1e1f0'\n  on-surface-variant: '#c6c5d6'\n  inverse-surface: '#e1e1f0'\n  inverse-on-surface: '#2e303b'\n  outline: '#908f9f'\n  outline-variant: '#454654'\n  surface-tint: '#bdc2ff'\n  primary: '#bdc2ff'\n  on-primary: '#03139f'\n  primary-container: '#4f5cd8'\n  on-primary-container: '#e9e9ff'\n  inverse-primary: '#4350cc'\n  secondary: '#bdc2ff'\n  on-secondary: '#131f8b'\n  secondary-container: '#2f3aa2'\n  on-secondary-container: '#a7afff'\n  tertiary: '#b9c8de'\n  on-tertiary: '#233143'\n  tertiary-container: '#5c6b7e'\n  on-tertiary-container: '#dfecff'\n  error: '#ffb4ab'\n  on-error: '#690005'\n  error-container: '#93000a'\n  on-error-container: '#ffdad6'\n  primary-fixed: '#dfe0ff'\n  primary-fixed-dim: '#bdc2ff'\n  on-primary-fixed: '#000767'\n  on-primary-fixed-variant: '#2835b3'\n  secondary-fixed: '#dfe0ff'\n  secondary-fixed-dim: '#bdc2ff'\n  on-secondary-fixed: '#000766'\n  on-secondary-fixed-variant: '#2f3aa2'\n  tertiary-fixed: '#d4e4fa'\n  tertiary-fixed-dim: '#b9c8de'\n  on-tertiary-fixed: '#0d1c2d'\n  on-tertiary-fixed-variant: '#39485a'\n  background: '#11131d'\n  on-background: '#e1e1f0'\n  surface-variant: '#323440'\ntypography:\n  display-hero:\n    fontFamily: Syne\n    fontSize: 64px\n    fontWeight: '800'\n    lineHeight: 72px\n    letterSpacing: -0.03em\n  display-hero-mobile:\n    fontFamily: Syne\n    fontSize: 36px\n    fontWeight: '800'\n    lineHeight: 44px\n    letterSpacing: -0.02em\n  headline-xl:\n    fontFamily: Syne\n    fontSize: 44px\n    fontWeight: '700'\n    lineHeight: 52px\n    letterSpacing: -0.02em\n  headline-xl-mobile:\n    fontFamily: Syne\n    fontSize: 28px\n    fontWeight: '700'\n    lineHeight: 36px\n    letterSpacing: -0.01em\n  headline-lg:\n    fontFamily: Syne\n    fontSize: 32px\n    fontWeight: '700'\n    lineHeight: 40px\n    letterSpacing: -0.015em\n  headline-md:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 24px\n    fontWeight: '600'\n    lineHeight: 32px\n    letterSpacing: -0.01em\n  title-sm:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 18px\n    fontWeight: '600'\n    lineHeight: 24px\n    letterSpacing: 0em\n  body-lg:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 16px\n    fontWeight: '400'\n    lineHeight: 26px\n    letterSpacing: 0em\n  body-md:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 14px\n    fontWeight: '400'\n    lineHeight: 22px\n    letterSpacing: 0.01em\n  label-caps:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 11px\n    fontWeight: '700'\n    lineHeight: 14px\n    letterSpacing: 0.12em\n  label-sm:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 12px\n    fontWeight: '500'\n    lineHeight: 16px\n    letterSpacing: 0.02em\nrounded:\n  sm: 0.25rem\n  DEFAULT: 0.5rem\n  md: 0.75rem\n  lg: 1rem\n  xl: 1.5rem\n  full: 9999px\nspacing:\n  gutter: 1.5rem\n  gutter-mobile: 1rem\n  margin: 3.5rem\n  margin-mobile: 1.25rem\n  space-xs: 0.25rem\n  space-sm: 0.5rem\n  space-md: 1rem\n  space-lg: 1.5rem\n  space-xl: 2.5rem\n---\n\n## Brand & Style\n\nThis design system establishes an ultra-premium, cinematic streaming environment tailored for cinephiles, entertainment connoisseurs, and contemporary viewers who expect immersion over utility clutter. The interface disappears behind the content, evoking the physical ambiance of an elite private screening room\u2014dark, focused, and acoustically pure.\n\nThe design language balances **Editorial Minimalism** with **Luminous Glassmorphism**. Layouts leverage expansive aspect-ratio viewports, deliberate micro-borders, deep canvas layering, and focused bursts of electric indigo to signal interactivity. Every frame feels intentional, high-production, and dignified. Visual noise is aggressively eliminated to maximize dynamic range between the deep canvas and rich key art.\n\n## Colors\n\nThe palette is anchored in an unyielding void\u2014a true black canvas (`#000000`) engineered for OLED contrast. Structural depth relies on cold obsidian surface tiers (`#0A0C16`, `#121528`, `#181C38`) rather than artificial drop shadows.\n\n- **Primary Accent (`#4F5CD8` / `#3E49B0`):** Electric indigo serves as the singular vehicle for actionable states, active scrub bars, focus halos, and primary invitations.\n- **Secondary Titanium Slate (`#94A3B8` / `#64748B`):** Restrained metallics provide clear hierarchy for metadata, runtimes, cast listings, and secondary descriptors without competing with bright white titles.\n- **Typography & Canvas:** High-contrast pure white (`#FFFFFF`) commands lead titles and active controls, set against the zero-luminance canvas to preserve cinematic weight.\n- **Micro-Gradients & Glows:** Used sparingly at `12%\u201324%` opacity behind hero art transitions to fuse background obsidian layers directly with streaming content.\n\n## Typography\n\nThe type system creates a dynamic juxtaposition between theatrical drama and razor-sharp modern interface engineering.\n\n- **Headlines (`Syne`):** High-impact, sculptural display letterforms command hero banners, editorial collections, and premier feature titles. Negative letter-spacing gives major headlines an architectural, poster-like presence.\n- **Interface & Body (`Plus Jakarta Sans`):** Selected for its geometric clarity and open apertures, preserving legibility at micro-sizes across television distances, tablet screens, and compact mobile interfaces.\n- **Metadata Labels (`label-caps`):** Formatted in structural uppercase with wide tracking (`0.12em`) to ground audio badges (4K UHD, HDR10, ATMOS), release dates, and studio attributions without competing against show names.\n\n## Layout & Spacing\n\nThe layout is built upon a flexible 12-column fluid grid system paired with horizontal scroll carousels that bleed past margins to cue continuous discovery.\n\n- **Desktop (1440px+):** 12-column grid, `3.5rem` canvas margins, and `1.5rem` gutters. Content rows use generous vertical separation (`space-xl` or `4rem`) to allow cover art to breathe.\n- **Tablet (768px \u2013 1439px):** 8-column layout with `2rem` outer padding, collapsing hero banners into centered 16:9 cinematic spotlights.\n- **Mobile (< 768px):** 4-column layout with `1.25rem` margins and `1rem` gutters. Navigation docks to a glassmorphic bottom bar, and poster rails default to a multi-card peek ratio.\n- **Edge Bleed:** Horizontal rails must break past right-side page margins by half a card width, inviting swipe and scroll behavior.\n\n## Elevation & Depth\n\nSpatial depth is achieved through structural layering and optical luminance rather than heavy drop shadows.\n\n- **Obsidian Tiering:**\n  - **Base Canvas:** Pure Black (`#000000`) represents resting space and infinite edge transitions.\n  - **Surface Level 1:** Deep Obsidian (`#0A0C16`) forms card backings, side rails, and drawer panels.\n  - **Surface Level 2:** Mid Obsidian (`#121528`) handles hover surfaces and expanded modals.\n  - **Surface Level 3:** Elevated Slate (`#181C38`) serves nested components, badge grounds, and tooltip overlays.\n- **Micro-Borders:** Every surface tier is delimited by a 1px hairline border (`rgba(255, 255, 255, 0.08)` on rest; `rgba(79, 92, 216, 0.6)` on focus).\n- **Glassmorphism Layers:** Floating header bars and overlay badges utilize translucent backdrops (`rgba(10, 12, 22, 0.75)`) combined with an active `20px` background blur.\n- **Indigo Atmospheric Glow:** Focused or active elements project an ambient diffuse aura: `box-shadow: 0 0 32px -4px rgba(79, 92, 216, 0.35)`.\n\n## Shapes\n\nThe design system maintains a balanced geometry (`roundedness: 2` / base `8px`), combining the structural authority of classic cinema displays with tactile contemporary touch targets.\n\n- **Base Cards & Modules:** `0.5rem` (`8px`) border-radius preserves the crisp, rectangular aspect ratios of standard film stills (16:9, 2:3, and 21:9 ultra-wide).\n- **Overlays, Drawers & Modals:** `1rem` (`16px`) for larger floating surfaces to soften large transitions.\n- **Controls & Badges:** Interactive buttons, search inputs, tags, and chips take on fully rounded pill profiles (`9999px`) to create clear differentiation between clickable tools and viewable content.\n\n## Components\n\n### Buttons\n- **Primary Action (Play / Resume):** High-contrast pure white fill (`#FFFFFF`) with deep black text (`#000000`), pill shape, bold weight, with an electric indigo shadow on hover.\n- **Secondary Action (Add to List / Info):** Translucent glass fill (`rgba(255, 255, 255, 0.08)`), pure white text, 1px perimeter border (`rgba(255, 255, 255, 0.15)`), shifting to solid slate border on hover.\n- **Icon / Control Pills:** Circular or pill-shaped, `44px` minimum hit area, housing SVG icons centered with strict 1:1 ratios.\n\n### Cards (Film Ratios)\n- **Portrait Poster (2:3 Ratio):** Standard catalog card. Features smooth zoom on hover (`scale 1.03`), glowing indigo border outline, and a bottom gradient vignette revealing metadata on hover.\n- **Landscape Backdrop (16:9 Ratio):** Episode selections, watch history, and documentary formats. Includes integrated progress scrub bar pinned to the bottom border (`#4F5CD8` fill over `#181C38` base).\n- **Featured Billboard (21:9 or 16:9 Dynamic):** Hero canvas card featuring seamless right-and-bottom opacity mask bleeding into `#000000`.\n\n### Chips & Badges\n- **Technical Badges (4K, HDR, Dolby):** Frosted capsule with 1px border (`rgba(255, 255, 255, 0.12)`), uppercase `label-caps` typography, `space-xs` vertical and `space-sm` horizontal padding.\n- **Editorial Chips (Genres, Moods):** Interactive pill shapes, low-contrast slate background, transforming to electric indigo on selection.\n\n### Form Inputs & Search\n- **Search Bar:** Pill-shaped glass container (`rgba(18, 21, 40, 0.8)`) with `1px` border (`rgba(255, 255, 255, 0.1)`), glowing electric indigo hairline on focus.\n- **Checkboxes & Radios:** `20px` squircle (`4px` radius) or circle, solid `#121528` background with an active indigo fill and check glyph.\n\n### Scrubbers & Sliders\n- Minimal `4px` height track in deep obsidian (`#181C38`), active timeline highlighted in electric indigo (`#4F5CD8`), and an elevated `12px` circular white scrubbing thumb with glow accent.",
+            "font": "SYNE",
+            "headlineFont": "SYNE",
+            "headlineFontFamily": "Syne",
+            "labelFont": "PLUS_JAKARTA_SANS",
+            "labelFontFamily": "Plus Jakarta Sans",
+            "namedColors": {
+              "background": "#11131d",
+              "error": "#ffb4ab",
+              "error_container": "#93000a",
+              "inverse_on_surface": "#2e303b",
+              "inverse_primary": "#4350cc",
+              "inverse_surface": "#e1e1f0",
+              "on_background": "#e1e1f0",
+              "on_error": "#690005",
+              "on_error_container": "#ffdad6",
+              "on_primary": "#03139f",
+              "on_primary_container": "#e9e9ff",
+              "on_primary_fixed": "#000767",
+              "on_primary_fixed_variant": "#2835b3",
+              "on_secondary": "#131f8b",
+              "on_secondary_container": "#a7afff",
+              "on_secondary_fixed": "#000766",
+              "on_secondary_fixed_variant": "#2f3aa2",
+              "on_surface": "#e1e1f0",
+              "on_surface_variant": "#c6c5d6",
+              "on_tertiary": "#233143",
+              "on_tertiary_container": "#dfecff",
+              "on_tertiary_fixed": "#0d1c2d",
+              "on_tertiary_fixed_variant": "#39485a",
+              "outline": "#908f9f",
+              "outline_variant": "#454654",
+              "primary": "#bdc2ff",
+              "primary_container": "#4f5cd8",
+              "primary_fixed": "#dfe0ff",
+              "primary_fixed_dim": "#bdc2ff",
+              "secondary": "#bdc2ff",
+              "secondary_container": "#2f3aa2",
+              "secondary_fixed": "#dfe0ff",
+              "secondary_fixed_dim": "#bdc2ff",
+              "surface": "#11131d",
+              "surface_bright": "#373844",
+              "surface_container": "#1d1f2a",
+              "surface_container_high": "#282934",
+              "surface_container_highest": "#323440",
+              "surface_container_low": "#191b26",
+              "surface_container_lowest": "#0c0e18",
+              "surface_dim": "#11131d",
+              "surface_tint": "#bdc2ff",
+              "surface_variant": "#323440",
+              "tertiary": "#b9c8de",
+              "tertiary_container": "#5c6b7e",
+              "tertiary_fixed": "#d4e4fa",
+              "tertiary_fixed_dim": "#b9c8de"
+            },
+            "overrideNeutralColor": "#0a0c16",
+            "overridePrimaryColor": "#4f5cd8",
+            "overrideSecondaryColor": "#3e49b0",
+            "overrideTertiaryColor": "#94a3b8",
+            "roundness": "ROUND_EIGHT",
+            "spacing": {
+              "gutter": "1.5rem",
+              "gutter-mobile": "1rem",
+              "margin": "3.5rem",
+              "margin-mobile": "1.25rem",
+              "space-lg": "1.5rem",
+              "space-md": "1rem",
+              "space-sm": "0.5rem",
+              "space-xl": "2.5rem",
+              "space-xs": "0.25rem"
+            },
+            "spacingScale": 2,
+            "typography": {
+              "body-lg": {
+                "fontFamily": "Plus Jakarta Sans",
+                "fontSize": "16px",
+                "fontWeight": "400",
+                "letterSpacing": "0em",
+                "lineHeight": "26px"
+              },
+              "body-md": {
+                "fontFamily": "Plus Jakarta Sans",
+                "fontSize": "14px",
+                "fontWeight": "400",
+                "letterSpacing": "0.01em",
+                "lineHeight": "22px"
+              },
+              "display-hero": {
+                "fontFamily": "Syne",
+                "fontSize": "64px",
+                "fontWeight": "800",
+                "letterSpacing": "-0.03em",
+                "lineHeight": "72px"
+              },
+              "display-hero-mobile": {
+                "fontFamily": "Syne",
+                "fontSize": "36px",
+                "fontWeight": "800",
+                "letterSpacing": "-0.02em",
+                "lineHeight": "44px"
+              },
+              "headline-lg": {
+                "fontFamily": "Syne",
+                "fontSize": "32px",
+                "fontWeight": "700",
+                "letterSpacing": "-0.015em",
+                "lineHeight": "40px"
+              },
+              "headline-md": {
+                "fontFamily": "Plus Jakarta Sans",
+                "fontSize": "24px",
+                "fontWeight": "600",
+                "letterSpacing": "-0.01em",
+                "lineHeight": "32px"
+              },
+              "headline-xl": {
+                "fontFamily": "Syne",
+                "fontSize": "44px",
+                "fontWeight": "700",
+                "letterSpacing": "-0.02em",
+                "lineHeight": "52px"
+              },
+              "headline-xl-mobile": {
+                "fontFamily": "Syne",
+                "fontSize": "28px",
+                "fontWeight": "700",
+                "letterSpacing": "-0.01em",
+                "lineHeight": "36px"
+              },
+              "label-caps": {
+                "fontFamily": "Plus Jakarta Sans",
+                "fontSize": "11px",
+                "fontWeight": "700",
+                "letterSpacing": "0.12em",
+                "lineHeight": "14px"
+              },
+              "label-sm": {
+                "fontFamily": "Plus Jakarta Sans",
+                "fontSize": "12px",
+                "fontWeight": "500",
+                "letterSpacing": "0.02em",
+                "lineHeight": "16px"
+              },
+              "title-sm": {
+                "fontFamily": "Plus Jakarta Sans",
+                "fontSize": "18px",
+                "fontWeight": "600",
+                "letterSpacing": "0em",
+                "lineHeight": "24px"
+              }
+            }
+          }
+        },
+        "name": "assets/01bd20b82a1d4a3da1033677e2f49a0b",
+        "version": "1"
+      }
+    },
+    {
+      "design": {
+        "screens": [
+          {
+            "designSystem": {
+              "designSystem": {
+                "displayName": "Cinematic Obsidian",
+                "styleGuidelines": "## Brand & Style\n\nThis design system establishes an ultra-premium, cinematic streaming environment tailored for cinephiles, entertainment connoisseurs, and contemporary viewers who expect immersion over utility clutter. The interface disappears behind the content, evoking the physical ambiance of an elite private screening room\u2014dark, focused, and acoustically pure.\n\nThe design language balances **Editorial Minimalism** with **Luminous Glassmorphism**. Layouts leverage expansive aspect-ratio viewports, deliberate micro-borders, deep canvas layering, and focused bursts of electric indigo to signal interactivity. Every frame feels intentional, high-production, and dignified. Visual noise is aggressively eliminated to maximize dynamic range between the deep canvas and rich key art.\n\n## Layout & Spacing\n\nThe layout is built upon a flexible 12-column fluid grid system paired with horizontal scroll carousels that bleed past margins to cue continuous discovery.\n\n- **Desktop (1440px+):** 12-column grid, `3.5rem` canvas margins, and `1.5rem` gutters. Content rows use generous vertical separation (`space-xl` or `4rem`) to allow cover art to breathe.\n- **Tablet (768px \u2013 1439px):** 8-column layout with `2rem` outer padding, collapsing hero banners into centered 16:9 cinematic spotlights.\n- **Mobile (< 768px):** 4-column layout with `1.25rem` margins and `1rem` gutters. Navigation docks to a glassmorphic bottom bar, and poster rails default to a multi-card peek ratio.\n- **Edge Bleed:** Horizontal rails must break past right-side page margins by half a card width, inviting swipe and scroll behavior.\n\n## Elevation & Depth\n\nSpatial depth is achieved through structural layering and optical luminance rather than heavy drop shadows.\n\n- **Obsidian Tiering:**\n  - **Base Canvas:** Pure Black (`#000000`) represents resting space and infinite edge transitions.\n  - **Surface Level 1:** Deep Obsidian (`#0A0C16`) forms card backings, side rails, and drawer panels.\n  - **Surface Level 2:** Mid Obsidian (`#121528`) handles hover surfaces and expanded modals.\n  - **Surface Level 3:** Elevated Slate (`#181C38`) serves nested components, badge grounds, and tooltip overlays.\n- **Micro-Borders:** Every surface tier is delimited by a 1px hairline border (`rgba(255, 255, 255, 0.08)` on rest; `rgba(79, 92, 216, 0.6)` on focus).\n- **Glassmorphism Layers:** Floating header bars and overlay badges utilize translucent backdrops (`rgba(10, 12, 22, 0.75)`) combined with an active `20px` background blur.\n- **Indigo Atmospheric Glow:** Focused or active elements project an ambient diffuse aura: `box-shadow: 0 0 32px -4px rgba(79, 92, 216, 0.35)`.\n\n## Components\n\n### Buttons\n- **Primary Action (Play / Resume):** High-contrast pure white fill (`#FFFFFF`) with deep black text (`#000000`), pill shape, bold weight, with an electric indigo shadow on hover.\n- **Secondary Action (Add to List / Info):** Translucent glass fill (`rgba(255, 255, 255, 0.08)`), pure white text, 1px perimeter border (`rgba(255, 255, 255, 0.15)`), shifting to solid slate border on hover.\n- **Icon / Control Pills:** Circular or pill-shaped, `44px` minimum hit area, housing SVG icons centered with strict 1:1 ratios.\n\n### Cards (Film Ratios)\n- **Portrait Poster (2:3 Ratio):** Standard catalog card. Features smooth zoom on hover (`scale 1.03`), glowing indigo border outline, and a bottom gradient vignette revealing metadata on hover.\n- **Landscape Backdrop (16:9 Ratio):** Episode selections, watch history, and documentary formats. Includes integrated progress scrub bar pinned to the bottom border (`#4F5CD8` fill over `#181C38` base).\n- **Featured Billboard (21:9 or 16:9 Dynamic):** Hero canvas card featuring seamless right-and-bottom opacity mask bleeding into `#000000`.\n\n### Chips & Badges\n- **Technical Badges (4K, HDR, Dolby):** Frosted capsule with 1px border (`rgba(255, 255, 255, 0.12)`), uppercase `label-caps` typography, `space-xs` vertical and `space-sm` horizontal padding.\n- **Editorial Chips (Genres, Moods):** Interactive pill shapes, low-contrast slate background, transforming to electric indigo on selection.\n\n### Form Inputs & Search\n- **Search Bar:** Pill-shaped glass container (`rgba(18, 21, 40, 0.8)`) with `1px` border (`rgba(255, 255, 255, 0.1)`), glowing electric indigo hairline on focus.\n- **Checkboxes & Radios:** `20px` squircle (`4px` radius) or circle, solid `#121528` background with an active indigo fill and check glyph.\n\n### Scrubbers & Sliders\n- Minimal `4px` height track in deep obsidian (`#181C38`), active timeline highlighted in electric indigo (`#4F5CD8`), and an elevated `12px` circular white scrubbing thumb with glow accent.",
+                "theme": {
+                  "bodyFont": "PLUS_JAKARTA_SANS",
+                  "bodyFontFamily": "Plus Jakarta Sans",
+                  "colorMode": "DARK",
+                  "colorVariant": "FIDELITY",
+                  "customColor": "#4f5cd8",
+                  "designMd": "---\nname: Cinematic Obsidian\ncolors:\n  surface: '#11131d'\n  surface-dim: '#11131d'\n  surface-bright: '#373844'\n  surface-container-lowest: '#0c0e18'\n  surface-container-low: '#191b26'\n  surface-container: '#1d1f2a'\n  surface-container-high: '#282934'\n  surface-container-highest: '#323440'\n  on-surface: '#e1e1f0'\n  on-surface-variant: '#c6c5d6'\n  inverse-surface: '#e1e1f0'\n  inverse-on-surface: '#2e303b'\n  outline: '#908f9f'\n  outline-variant: '#454654'\n  surface-tint: '#bdc2ff'\n  primary: '#bdc2ff'\n  on-primary: '#03139f'\n  primary-container: '#4f5cd8'\n  on-primary-container: '#e9e9ff'\n  inverse-primary: '#4350cc'\n  secondary: '#bdc2ff'\n  on-secondary: '#131f8b'\n  secondary-container: '#2f3aa2'\n  on-secondary-container: '#a7afff'\n  tertiary: '#b9c8de'\n  on-tertiary: '#233143'\n  tertiary-container: '#5c6b7e'\n  on-tertiary-container: '#dfecff'\n  error: '#ffb4ab'\n  on-error: '#690005'\n  error-container: '#93000a'\n  on-error-container: '#ffdad6'\n  primary-fixed: '#dfe0ff'\n  primary-fixed-dim: '#bdc2ff'\n  on-primary-fixed: '#000767'\n  on-primary-fixed-variant: '#2835b3'\n  secondary-fixed: '#dfe0ff'\n  secondary-fixed-dim: '#bdc2ff'\n  on-secondary-fixed: '#000766'\n  on-secondary-fixed-variant: '#2f3aa2'\n  tertiary-fixed: '#d4e4fa'\n  tertiary-fixed-dim: '#b9c8de'\n  on-tertiary-fixed: '#0d1c2d'\n  on-tertiary-fixed-variant: '#39485a'\n  background: '#11131d'\n  on-background: '#e1e1f0'\n  surface-variant: '#323440'\ntypography:\n  display-hero:\n    fontFamily: Syne\n    fontSize: 64px\n    fontWeight: '800'\n    lineHeight: 72px\n    letterSpacing: -0.03em\n  display-hero-mobile:\n    fontFamily: Syne\n    fontSize: 36px\n    fontWeight: '800'\n    lineHeight: 44px\n    letterSpacing: -0.02em\n  headline-xl:\n    fontFamily: Syne\n    fontSize: 44px\n    fontWeight: '700'\n    lineHeight: 52px\n    letterSpacing: -0.02em\n  headline-xl-mobile:\n    fontFamily: Syne\n    fontSize: 28px\n    fontWeight: '700'\n    lineHeight: 36px\n    letterSpacing: -0.01em\n  headline-lg:\n    fontFamily: Syne\n    fontSize: 32px\n    fontWeight: '700'\n    lineHeight: 40px\n    letterSpacing: -0.015em\n  headline-md:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 24px\n    fontWeight: '600'\n    lineHeight: 32px\n    letterSpacing: -0.01em\n  title-sm:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 18px\n    fontWeight: '600'\n    lineHeight: 24px\n    letterSpacing: 0em\n  body-lg:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 16px\n    fontWeight: '400'\n    lineHeight: 26px\n    letterSpacing: 0em\n  body-md:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 14px\n    fontWeight: '400'\n    lineHeight: 22px\n    letterSpacing: 0.01em\n  label-caps:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 11px\n    fontWeight: '700'\n    lineHeight: 14px\n    letterSpacing: 0.12em\n  label-sm:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 12px\n    fontWeight: '500'\n    lineHeight: 16px\n    letterSpacing: 0.02em\nrounded:\n  sm: 0.25rem\n  DEFAULT: 0.5rem\n  md: 0.75rem\n  lg: 1rem\n  xl: 1.5rem\n  full: 9999px\nspacing:\n  gutter: 1.5rem\n  gutter-mobile: 1rem\n  margin: 3.5rem\n  margin-mobile: 1.25rem\n  space-xs: 0.25rem\n  space-sm: 0.5rem\n  space-md: 1rem\n  space-lg: 1.5rem\n  space-xl: 2.5rem\n---\n\n## Brand & Style\n\nThis design system establishes an ultra-premium, cinematic streaming environment tailored for cinephiles, entertainment connoisseurs, and contemporary viewers who expect immersion over utility clutter. The interface disappears behind the content, evoking the physical ambiance of an elite private screening room\u2014dark, focused, and acoustically pure.\n\nThe design language balances **Editorial Minimalism** with **Luminous Glassmorphism**. Layouts leverage expansive aspect-ratio viewports, deliberate micro-borders, deep canvas layering, and focused bursts of electric indigo to signal interactivity. Every frame feels intentional, high-production, and dignified. Visual noise is aggressively eliminated to maximize dynamic range between the deep canvas and rich key art.\n\n## Colors\n\nThe palette is anchored in an unyielding void\u2014a true black canvas (`#000000`) engineered for OLED contrast. Structural depth relies on cold obsidian surface tiers (`#0A0C16`, `#121528`, `#181C38`) rather than artificial drop shadows.\n\n- **Primary Accent (`#4F5CD8` / `#3E49B0`):** Electric indigo serves as the singular vehicle for actionable states, active scrub bars, focus halos, and primary invitations.\n- **Secondary Titanium Slate (`#94A3B8` / `#64748B`):** Restrained metallics provide clear hierarchy for metadata, runtimes, cast listings, and secondary descriptors without competing with bright white titles.\n- **Typography & Canvas:** High-contrast pure white (`#FFFFFF`) commands lead titles and active controls, set against the zero-luminance canvas to preserve cinematic weight.\n- **Micro-Gradients & Glows:** Used sparingly at `12%\u201324%` opacity behind hero art transitions to fuse background obsidian layers directly with streaming content.\n\n## Typography\n\nThe type system creates a dynamic juxtaposition between theatrical drama and razor-sharp modern interface engineering.\n\n- **Headlines (`Syne`):** High-impact, sculptural display letterforms command hero banners, editorial collections, and premier feature titles. Negative letter-spacing gives major headlines an architectural, poster-like presence.\n- **Interface & Body (`Plus Jakarta Sans`):** Selected for its geometric clarity and open apertures, preserving legibility at micro-sizes across television distances, tablet screens, and compact mobile interfaces.\n- **Metadata Labels (`label-caps`):** Formatted in structural uppercase with wide tracking (`0.12em`) to ground audio badges (4K UHD, HDR10, ATMOS), release dates, and studio attributions without competing against show names.\n\n## Layout & Spacing\n\nThe layout is built upon a flexible 12-column fluid grid system paired with horizontal scroll carousels that bleed past margins to cue continuous discovery.\n\n- **Desktop (1440px+):** 12-column grid, `3.5rem` canvas margins, and `1.5rem` gutters. Content rows use generous vertical separation (`space-xl` or `4rem`) to allow cover art to breathe.\n- **Tablet (768px \u2013 1439px):** 8-column layout with `2rem` outer padding, collapsing hero banners into centered 16:9 cinematic spotlights.\n- **Mobile (< 768px):** 4-column layout with `1.25rem` margins and `1rem` gutters. Navigation docks to a glassmorphic bottom bar, and poster rails default to a multi-card peek ratio.\n- **Edge Bleed:** Horizontal rails must break past right-side page margins by half a card width, inviting swipe and scroll behavior.\n\n## Elevation & Depth\n\nSpatial depth is achieved through structural layering and optical luminance rather than heavy drop shadows.\n\n- **Obsidian Tiering:**\n  - **Base Canvas:** Pure Black (`#000000`) represents resting space and infinite edge transitions.\n  - **Surface Level 1:** Deep Obsidian (`#0A0C16`) forms card backings, side rails, and drawer panels.\n  - **Surface Level 2:** Mid Obsidian (`#121528`) handles hover surfaces and expanded modals.\n  - **Surface Level 3:** Elevated Slate (`#181C38`) serves nested components, badge grounds, and tooltip overlays.\n- **Micro-Borders:** Every surface tier is delimited by a 1px hairline border (`rgba(255, 255, 255, 0.08)` on rest; `rgba(79, 92, 216, 0.6)` on focus).\n- **Glassmorphism Layers:** Floating header bars and overlay badges utilize translucent backdrops (`rgba(10, 12, 22, 0.75)`) combined with an active `20px` background blur.\n- **Indigo Atmospheric Glow:** Focused or active elements project an ambient diffuse aura: `box-shadow: 0 0 32px -4px rgba(79, 92, 216, 0.35)`.\n\n## Shapes\n\nThe design system maintains a balanced geometry (`roundedness: 2` / base `8px`), combining the structural authority of classic cinema displays with tactile contemporary touch targets.\n\n- **Base Cards & Modules:** `0.5rem` (`8px`) border-radius preserves the crisp, rectangular aspect ratios of standard film stills (16:9, 2:3, and 21:9 ultra-wide).\n- **Overlays, Drawers & Modals:** `1rem` (`16px`) for larger floating surfaces to soften large transitions.\n- **Controls & Badges:** Interactive buttons, search inputs, tags, and chips take on fully rounded pill profiles (`9999px`) to create clear differentiation between clickable tools and viewable content.\n\n## Components\n\n### Buttons\n- **Primary Action (Play / Resume):** High-contrast pure white fill (`#FFFFFF`) with deep black text (`#000000`), pill shape, bold weight, with an electric indigo shadow on hover.\n- **Secondary Action (Add to List / Info):** Translucent glass fill (`rgba(255, 255, 255, 0.08)`), pure white text, 1px perimeter border (`rgba(255, 255, 255, 0.15)`), shifting to solid slate border on hover.\n- **Icon / Control Pills:** Circular or pill-shaped, `44px` minimum hit area, housing SVG icons centered with strict 1:1 ratios.\n\n### Cards (Film Ratios)\n- **Portrait Poster (2:3 Ratio):** Standard catalog card. Features smooth zoom on hover (`scale 1.03`), glowing indigo border outline, and a bottom gradient vignette revealing metadata on hover.\n- **Landscape Backdrop (16:9 Ratio):** Episode selections, watch history, and documentary formats. Includes integrated progress scrub bar pinned to the bottom border (`#4F5CD8` fill over `#181C38` base).\n- **Featured Billboard (21:9 or 16:9 Dynamic):** Hero canvas card featuring seamless right-and-bottom opacity mask bleeding into `#000000`.\n\n### Chips & Badges\n- **Technical Badges (4K, HDR, Dolby):** Frosted capsule with 1px border (`rgba(255, 255, 255, 0.12)`), uppercase `label-caps` typography, `space-xs` vertical and `space-sm` horizontal padding.\n- **Editorial Chips (Genres, Moods):** Interactive pill shapes, low-contrast slate background, transforming to electric indigo on selection.\n\n### Form Inputs & Search\n- **Search Bar:** Pill-shaped glass container (`rgba(18, 21, 40, 0.8)`) with `1px` border (`rgba(255, 255, 255, 0.1)`), glowing electric indigo hairline on focus.\n- **Checkboxes & Radios:** `20px` squircle (`4px` radius) or circle, solid `#121528` background with an active indigo fill and check glyph.\n\n### Scrubbers & Sliders\n- Minimal `4px` height track in deep obsidian (`#181C38`), active timeline highlighted in electric indigo (`#4F5CD8`), and an elevated `12px` circular white scrubbing thumb with glow accent.",
+                  "font": "SYNE",
+                  "headlineFont": "SYNE",
+                  "headlineFontFamily": "Syne",
+                  "labelFont": "PLUS_JAKARTA_SANS",
+                  "labelFontFamily": "Plus Jakarta Sans",
+                  "namedColors": {
+                    "background": "#11131d",
+                    "error": "#ffb4ab",
+                    "error_container": "#93000a",
+                    "inverse_on_surface": "#2e303b",
+                    "inverse_primary": "#4350cc",
+                    "inverse_surface": "#e1e1f0",
+                    "on_background": "#e1e1f0",
+                    "on_error": "#690005",
+                    "on_error_container": "#ffdad6",
+                    "on_primary": "#03139f",
+                    "on_primary_container": "#e9e9ff",
+                    "on_primary_fixed": "#000767",
+                    "on_primary_fixed_variant": "#2835b3",
+                    "on_secondary": "#131f8b",
+                    "on_secondary_container": "#a7afff",
+                    "on_secondary_fixed": "#000766",
+                    "on_secondary_fixed_variant": "#2f3aa2",
+                    "on_surface": "#e1e1f0",
+                    "on_surface_variant": "#c6c5d6",
+                    "on_tertiary": "#233143",
+                    "on_tertiary_container": "#dfecff",
+                    "on_tertiary_fixed": "#0d1c2d",
+                    "on_tertiary_fixed_variant": "#39485a",
+                    "outline": "#908f9f",
+                    "outline_variant": "#454654",
+                    "primary": "#bdc2ff",
+                    "primary_container": "#4f5cd8",
+                    "primary_fixed": "#dfe0ff",
+                    "primary_fixed_dim": "#bdc2ff",
+                    "secondary": "#bdc2ff",
+                    "secondary_container": "#2f3aa2",
+                    "secondary_fixed": "#dfe0ff",
+                    "secondary_fixed_dim": "#bdc2ff",
+                    "surface": "#11131d",
+                    "surface_bright": "#373844",
+                    "surface_container": "#1d1f2a",
+                    "surface_container_high": "#282934",
+                    "surface_container_highest": "#323440",
+                    "surface_container_low": "#191b26",
+                    "surface_container_lowest": "#0c0e18",
+                    "surface_dim": "#11131d",
+                    "surface_tint": "#bdc2ff",
+                    "surface_variant": "#323440",
+                    "tertiary": "#b9c8de",
+                    "tertiary_container": "#5c6b7e",
+                    "tertiary_fixed": "#d4e4fa",
+                    "tertiary_fixed_dim": "#b9c8de"
+                  },
+                  "overrideNeutralColor": "#0a0c16",
+                  "overridePrimaryColor": "#4f5cd8",
+                  "overrideSecondaryColor": "#3e49b0",
+                  "overrideTertiaryColor": "#94a3b8",
+                  "roundness": "ROUND_EIGHT",
+                  "spacing": {
+                    "gutter": "1.5rem",
+                    "gutter-mobile": "1rem",
+                    "margin": "3.5rem",
+                    "margin-mobile": "1.25rem",
+                    "space-lg": "1.5rem",
+                    "space-md": "1rem",
+                    "space-sm": "0.5rem",
+                    "space-xl": "2.5rem",
+                    "space-xs": "0.25rem"
+                  },
+                  "spacingScale": 2,
+                  "typography": {
+                    "body-lg": {
+                      "fontFamily": "Plus Jakarta Sans",
+                      "fontSize": "16px",
+                      "fontWeight": "400",
+                      "letterSpacing": "0em",
+                      "lineHeight": "26px"
+                    },
+                    "body-md": {
+                      "fontFamily": "Plus Jakarta Sans",
+                      "fontSize": "14px",
+                      "fontWeight": "400",
+                      "letterSpacing": "0.01em",
+                      "lineHeight": "22px"
+                    },
+                    "display-hero": {
+                      "fontFamily": "Syne",
+                      "fontSize": "64px",
+                      "fontWeight": "800",
+                      "letterSpacing": "-0.03em",
+                      "lineHeight": "72px"
+                    },
+                    "display-hero-mobile": {
+                      "fontFamily": "Syne",
+                      "fontSize": "36px",
+                      "fontWeight": "800",
+                      "letterSpacing": "-0.02em",
+                      "lineHeight": "44px"
+                    },
+                    "headline-lg": {
+                      "fontFamily": "Syne",
+                      "fontSize": "32px",
+                      "fontWeight": "700",
+                      "letterSpacing": "-0.015em",
+                      "lineHeight": "40px"
+                    },
+                    "headline-md": {
+                      "fontFamily": "Plus Jakarta Sans",
+                      "fontSize": "24px",
+                      "fontWeight": "600",
+                      "letterSpacing": "-0.01em",
+                      "lineHeight": "32px"
+                    },
+                    "headline-xl": {
+                      "fontFamily": "Syne",
+                      "fontSize": "44px",
+                      "fontWeight": "700",
+                      "letterSpacing": "-0.02em",
+                      "lineHeight": "52px"
+                    },
+                    "headline-xl-mobile": {
+                      "fontFamily": "Syne",
+                      "fontSize": "28px",
+                      "fontWeight": "700",
+                      "letterSpacing": "-0.01em",
+                      "lineHeight": "36px"
+                    },
+                    "label-caps": {
+                      "fontFamily": "Plus Jakarta Sans",
+                      "fontSize": "11px",
+                      "fontWeight": "700",
+                      "letterSpacing": "0.12em",
+                      "lineHeight": "14px"
+                    },
+                    "label-sm": {
+                      "fontFamily": "Plus Jakarta Sans",
+                      "fontSize": "12px",
+                      "fontWeight": "500",
+                      "letterSpacing": "0.02em",
+                      "lineHeight": "16px"
+                    },
+                    "title-sm": {
+                      "fontFamily": "Plus Jakarta Sans",
+                      "fontSize": "18px",
+                      "fontWeight": "600",
+                      "letterSpacing": "0em",
+                      "lineHeight": "24px"
+                    }
+                  }
+                }
+              },
+              "name": "assets/01bd20b82a1d4a3da1033677e2f49a0b",
+              "version": "1"
+            },
+            "deviceType": "DESKTOP",
+            "generatedBy": "figaro_agent",
+            "height": "5262",
+            "htmlCode": {
+              "downloadUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sXzA1MmIwYzZmY2M4MDQ5ZTE4OWZjOTFhOWU1ZmQ1MTY3EgsSBxDVj-CtpgUYAZIBJAoKcHJvamVjdF9pZBIWQhQxMDY0ODE1MDk2NzI5MTA0NDc5Mg&filename=&opi=96797242",
+              "mimeType": "text/html",
+              "name": "projects/10648150967291044792/files/14fe79a185b64d6881387c22693fd5e5"
+            },
+            "id": "8d1e6e4256af47d09fe6f66359415466",
+            "name": "projects/10648150967291044792/screens/8d1e6e4256af47d09fe6f66359415466",
+            "prompt": "Create the comprehensive, high-fidelity desktop discovery and viewing experience for BingeBox.\n\nAesthetic & Theme:\n- Dominant deep black background (#000000 and #07080E) with subtle ambient electric indigo/sapphire spotlights (#2C3480 and #3D48B2 glowing gradients).\n- Crisp white typography (#FFFFFF) with muted secondary titanium hues (#94A3B8, #64748B).\n- Micro-glassmorphism, subtle 1px border outlines (rgba(255,255,255,0.08)), rounded tactile badges, and polished cinema-grade layout.\n- Notice banner at top: 'SIMULATED EDUCATIONAL PLATFORM \u2022 Course Project Sandbox \u2022 All Media & Bundled Videos Are Placeholder Concepts'.\n\nLayout Structure:\n1. Top Sticky Navigation:\n   - Left: BingeBox logomark with glowing indigo icon and sleek typography.\n   - Nav items: 'Home', 'Movies', 'Series', 'Top 10', 'New & Noteworthy', 'Audio & Subtitles'.\n   - Center/Right: Expandable Search Bar with instant shortcut key (\u2318K), filter badge indicator.\n   - Right controls: Guest Mode indicator ('Guest Preview \u2022 Sign in to save list'), Profile switcher pill ('Adult / Kids' mode toggle with playful avatar indicator), and 'Sign In / Plans' CTA button with primary indigo highlight (#2C3480).\n\n2. Atmospheric Feature Hero Spotlight (Original title: 'CHRONOS: ZERO' - Psychological Sci-Fi Series):\n   - Dramatic cinematic widescreen composition with layered vignette over deep dark tones.\n   - Dynamic badges: 'TOP #1 TODAY', '4K UHD \u2022 HDR10', 'Dolby Atmos 7.1', 'IMDb 8.9', 'TV-MA', 'Season 2 Premiere'.\n   - Compelling logline: 'When an orbital chronometer desynchronizes from Earth, an astrophysicist discovers fragments of memories from lives she hasn't lived yet.'\n   - Controls: Large glowing primary 'Watch Preview Reel' button (with play icon), 'Resume Ep. 3 (24m left)' progress button, 'Add to Watchlist' (+ icon), and 'Audio: EN, FR, JP \u2022 Subs: 18 available' status chip.\n   - Right side of hero: Mini upcoming episode preview card with timestamp scrubber and audio language switcher.\n\n3. Interactive Catalog Filter Bar (Catalog size: 162 titles):\n   - Live title counter: 'Browsing 162 Titles (Viewing 18 featured)'.\n   - Genre filter chips: 'All', 'Sci-Fi', 'Psychological Thriller', 'Neo-Noir', 'Documentary', 'Animation', 'Drama'.\n   - Dropdown filter pills:\n     * Audio Language: 'All Audio (EN, JP, ES, DE, FR)' with indicator 'Unknown kept unassigned'\n     * Subtitles: 'All Subs (Closed Captions, Multi-lingual)'\n     * Runtime: '< 90m', '90-120m', '> 120m'\n     * IMDb Rating slider / quick button: '7.5+ Stars'\n     * Age Rating: 'All', 'PG-13', 'TV-MA', 'Kids Safe'\n   - Clear filters trigger and active filter tag 'Audio: Original English' & 'IMDb: 7.5+'.\n\n4. Section 1: 'Continue Watching' (Simulated Member State):\n   - Cards with realistic watch progress bars (e.g. 68% complete, 14m remaining).\n   - Card 1: 'Kowloon Drift' (Neo-Noir Thriller) - Ep 4, 38m left - Resume badge.\n   - Card 2: 'Solitude Point' (Atmospheric Mystery) - 1h 12m left - HD badge.\n   - Card 3: 'Subatomic' (Documentary Series) - S1:E2, 18m left.\n   - Quick hover action icons: 'Play', 'Info', 'Remove from row'.\n\n5. Section 2: 'Top 10 in North America Today':\n   - Large bold typographic numbering (#1 to #5 visible with scroll rail) in metallic indigo gradient.\n   - High-contrast poster cards with hover reveals showing genre tag, IMDb rating, audio specs, and quick play trigger.\n   - Titles: #1 Chronos: Zero, #2 Ghost Frequency, #3 The Iron Garden, #4 Velocity Protocol, #5 Deep Mirage.\n\n6. Section 3: 'Multi-Language Cinema & Critical Acclaim':\n   - Filter-responsive grid/carousel cards showing language flags/labels (e.g., 'Japanese \u2022 Original Audio with Subs', 'Spanish \u2022 4K Atmos', 'French \u2022 Criterion Master').\n   - Clear empty/unknown state handling tags for metadata transparency.\n\n7. Interactive Slide-in Title Detail Modal / Quick Drawer (Rendered open or toggled):\n   - Showcase of a selected title: 'Ghost Frequency' (2024 \u2022 1h 54m \u2022 Directed by Elena Vance).\n   - Video player viewport placeholder with simulated playback controls: seek bar with buffered status, 4K/1080p stream quality toggle ('Ultra HD available on Cinema Tier'), audio track dropdown, subtitles toggle.\n   - Error banner demonstration: 'Notice: Concurrent stream limit reached on Standard Plan (2/2 active devices). Upgrade to Family 4K for 4 streams.'\n   - Tabs: 'Episodes & Extras', 'Trailers & Clips', 'Cast & Crew', 'Ratings & Reviews (Eligible to rate: 100% watched)'.\n   - Season dropdown (Season 1, Season 2) with episode list and duration.\n\n8. Plan & Account Quick Access Banner:\n   - 'Experience BingeBox at its best: 4K HDR, Dolby Atmos, and Offline Downloads. Compare Plans (Simulated sandbox billing).'\n\n9. Footer:\n   - Educational project disclaimer: 'BingeBox is an academic concept interface. Full-length video files are simulated placeholders. No licensed media is distributed.'\n   - Links: Plan Comparison, Device Manager, Audio/Subtitle Settings, Staff Catalog Administration, Simulated Sandbox Payments.\n\nInteractivity & Animations:\n- CSS micro-animations: gentle glow pulsation on hero CTA, smooth card scale on hover (translateY(-4px)), carousel scroll snapping, active filter state indicator transition, and accessible prefers-reduced-motion media query rules.\n- Vanilla JavaScript for quick interactive filtering, tab switching in detail modal, profile toggle (Adult vs Kids with UI theme shift), and video player control preview.",
+            "screenMetadata": {
+              "agentType": "PRO_AGENT",
+              "status": "COMPLETE"
+            },
+            "screenType": "DESIGN",
+            "screenshot": {
+              "downloadUrl": "https://lh3.googleusercontent.com/aida/AEtjO1XJYeZNbz_7_-5jEFESUIWzeduJc8rht89KCoJAtLPbXl_48FbLu5d99aat0v6LE5QGINmq5X6TP7XvTW82E-87WrPosySWCNdFs8VOA8REFI6SHxl847LlkiFoNd-KNYaIobjFAvqOtX6HERuTh6PQLZb8uWoIgDpe4eQHcg7_II0aLgpBEtoECwxJTC880uca--LbTgV6am0ZWzWvFcH-iG4P1nKmchdgAivl1mCmCW-teWFKCMzIDL7H",
+              "name": "projects/10648150967291044792/files/0fd6722f4aed48759cabe72fa4db7b0e"
+            },
+            "theme": {
+              "bodyFont": "PLUS_JAKARTA_SANS",
+              "bodyFontFamily": "Plus Jakarta Sans",
+              "colorMode": "DARK",
+              "colorVariant": "FIDELITY",
+              "customColor": "#4f5cd8",
+              "font": "SYNE",
+              "headlineFont": "SYNE",
+              "headlineFontFamily": "Syne",
+              "labelFont": "PLUS_JAKARTA_SANS",
+              "labelFontFamily": "Plus Jakarta Sans",
+              "namedColors": {
+                "background": "#11131d",
+                "error": "#ffb4ab",
+                "error_container": "#93000a",
+                "inverse_on_surface": "#2e303b",
+                "inverse_primary": "#4350cc",
+                "inverse_surface": "#e1e1f0",
+                "on_background": "#e1e1f0",
+                "on_error": "#690005",
+                "on_error_container": "#ffdad6",
+                "on_primary": "#03139f",
+                "on_primary_container": "#e9e9ff",
+                "on_primary_fixed": "#000767",
+                "on_primary_fixed_variant": "#2835b3",
+                "on_secondary": "#131f8b",
+                "on_secondary_container": "#a7afff",
+                "on_secondary_fixed": "#000766",
+                "on_secondary_fixed_variant": "#2f3aa2",
+                "on_surface": "#e1e1f0",
+                "on_surface_variant": "#c6c5d6",
+                "on_tertiary": "#233143",
+                "on_tertiary_container": "#dfecff",
+                "on_tertiary_fixed": "#0d1c2d",
+                "on_tertiary_fixed_variant": "#39485a",
+                "outline": "#908f9f",
+                "outline_variant": "#454654",
+                "primary": "#bdc2ff",
+                "primary_container": "#4f5cd8",
+                "primary_fixed": "#dfe0ff",
+                "primary_fixed_dim": "#bdc2ff",
+                "secondary": "#bdc2ff",
+                "secondary_container": "#2f3aa2",
+                "secondary_fixed": "#dfe0ff",
+                "secondary_fixed_dim": "#bdc2ff",
+                "surface": "#11131d",
+                "surface_bright": "#373844",
+                "surface_container": "#1d1f2a",
+                "surface_container_high": "#282934",
+                "surface_container_highest": "#323440",
+                "surface_container_low": "#191b26",
+                "surface_container_lowest": "#0c0e18",
+                "surface_dim": "#11131d",
+                "surface_tint": "#bdc2ff",
+                "surface_variant": "#323440",
+                "tertiary": "#b9c8de",
+                "tertiary_container": "#5c6b7e",
+                "tertiary_fixed": "#d4e4fa",
+                "tertiary_fixed_dim": "#b9c8de"
+              },
+              "overrideNeutralColor": "#0a0c16",
+              "overridePrimaryColor": "#4f5cd8",
+              "overrideSecondaryColor": "#3e49b0",
+              "overrideTertiaryColor": "#94a3b8",
+              "roundness": "ROUND_EIGHT",
+              "spacing": {
+                "gutter": "1.5rem",
+                "gutter-mobile": "1rem",
+                "margin": "3.5rem",
+                "margin-mobile": "1.25rem",
+                "space-lg": "1.5rem",
+                "space-md": "1rem",
+                "space-sm": "0.5rem",
+                "space-xl": "2.5rem",
+                "space-xs": "0.25rem"
+              },
+              "spacingScale": 2,
+              "typography": {
+                "body-lg": {
+                  "fontFamily": "Plus Jakarta Sans",
+                  "fontSize": "16px",
+                  "fontWeight": "400",
+                  "letterSpacing": "0em",
+                  "lineHeight": "26px"
+                },
+                "body-md": {
+                  "fontFamily": "Plus Jakarta Sans",
+                  "fontSize": "14px",
+                  "fontWeight": "400",
+                  "letterSpacing": "0.01em",
+                  "lineHeight": "22px"
+                },
+                "display-hero": {
+                  "fontFamily": "Syne",
+                  "fontSize": "64px",
+                  "fontWeight": "800",
+                  "letterSpacing": "-0.03em",
+                  "lineHeight": "72px"
+                },
+                "display-hero-mobile": {
+                  "fontFamily": "Syne",
+                  "fontSize": "36px",
+                  "fontWeight": "800",
+                  "letterSpacing": "-0.02em",
+                  "lineHeight": "44px"
+                },
+                "headline-lg": {
+                  "fontFamily": "Syne",
+                  "fontSize": "32px",
+                  "fontWeight": "700",
+                  "letterSpacing": "-0.015em",
+                  "lineHeight": "40px"
+                },
+                "headline-md": {
+                  "fontFamily": "Plus Jakarta Sans",
+                  "fontSize": "24px",
+                  "fontWeight": "600",
+                  "letterSpacing": "-0.01em",
+                  "lineHeight": "32px"
+                },
+                "headline-xl": {
+                  "fontFamily": "Syne",
+                  "fontSize": "44px",
+                  "fontWeight": "700",
+                  "letterSpacing": "-0.02em",
+                  "lineHeight": "52px"
+                },
+                "headline-xl-mobile": {
+                  "fontFamily": "Syne",
+                  "fontSize": "28px",
+                  "fontWeight": "700",
+                  "letterSpacing": "-0.01em",
+                  "lineHeight": "36px"
+                },
+                "label-caps": {
+                  "fontFamily": "Plus Jakarta Sans",
+                  "fontSize": "11px",
+                  "fontWeight": "700",
+                  "letterSpacing": "0.12em",
+                  "lineHeight": "14px"
+                },
+                "label-sm": {
+                  "fontFamily": "Plus Jakarta Sans",
+                  "fontSize": "12px",
+                  "fontWeight": "500",
+                  "letterSpacing": "0.02em",
+                  "lineHeight": "16px"
+                },
+                "title-sm": {
+                  "fontFamily": "Plus Jakarta Sans",
+                  "fontSize": "18px",
+                  "fontWeight": "600",
+                  "letterSpacing": "0em",
+                  "lineHeight": "24px"
+                }
+              }
+            },
+            "title": "BingeBox - Cinematic Desktop Discovery & Viewing",
+            "width": "2560"
+          }
+        ],
+        "theme": {}
+      }
+    },
+    {
+      "text": "### BingeBox \u2014 Cinematic Discovery & Viewing Architecture\n\nHere is the high-fidelity desktop discovery and viewing experience created for **BingeBox** (BingeBox - Cinematic Desktop Discovery & Viewing), along with the foundational design system (**Cinematic Obsidian** [Design_System]).\n\n---\n\n### 1. Original Concept & Information Architecture\n\n- **Visual Storytelling & Palette Philosophy:**\n  - **Dominant Black (`#000000`, `#0C0E18`):** Deep, true-black canvas creates an OLED-optimized theatrical immersion, eliminating screen glare and focusing attention entirely on media art.\n  - **Crisp Editorial White (`#FFFFFF`):** High typographic contrast using geometric hierarchy for instant legibility from viewing distance.\n  - **Electric Indigo & Sapphire Highlights (`#2C3480`, `#4F5CD8`):** Applied purposefully to focus states, active filter chips, hero CTAs, and ranked numbers\u2014infusing prestige without visual distraction.\n- **Header & Guest/Member Architecture:**\n  - Clear **Simulated Educational Sandbox** disclosure banner running continuously along the top.\n  - Dual access state: Guests can search, inspect metadata, filter by 5 distinct criteria, and view preview reels. Quick switcher toggles between **Adult Mode** and **Kids Safe View** (which dynamically filters mature ratings like TV-MA).\n- **Interactive Multi-Criteria Filter Bar (162 Titles Catalogue):**\n  - Instant live filter chips: Genre tags (`Sci-Fi`, `Psychological Thriller`, `Neo-Noir`, etc.).\n  - Secondary dropdowns: Audio track filtering (with explicit fallback: titles with unrecorded original audio are labeled `\"Unknown\"` rather than guessed), multi-lingual subtitles, and IMDb rating thresholds (`7.5+`).\n- **Discovery Hierarchy:**\n  - **Hero Feature Spotlight:** *Chronos: Zero* with rich metadata chips (4K UHD, HDR10, Dolby Atmos 7.1, TV-MA, IMDb 8.9), direct dual actions (*Watch Preview Reel* & *Resume Ep. 3*), and an \"Up Next in Queue\" card.\n  - **Continue Watching Rail:** Progress indicators with exact runtime remaining (e.g., *Kowloon Drift*, *Solitude Point*).\n  - **Top 10 in North America:** Custom metallic typography ranks (#1 to #5) paired with cinematic poster frames.\n  - **Multi-Language Cinema Spotlight:** Flagged audio provenance badges (Japanese original audio, Spanish Castilian Atmos, French Criterion master) prioritizing authentic international cinema.\n\n---\n\n### 2. Motion, Interaction & Accessibility Specifications\n\n#### A. Implemented in the Live Prototype\n- **Subtle Ambient Breathing Glow (`animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite`):** Soft luminous sapphire backdrop beneath primary actions.\n- **Card Lift & Focus Micro-Interactions (`transform: translateY(-4px) scale(1.02)`, `transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1)`):** Elevation feedback on poster cards with ambient drop-shadow expansion.\n- **Tactile Button Press Feedback (`active:scale-95`, `transition: transform 120ms ease`):** Instant physical tactile response for filter pills and playback buttons.\n- **Accessibility Guarantee (`@media (prefers-reduced-motion: reduce)`):** All continuous transforms and pulses are neutralized to clean static borders and opacities, avoiding sensory strain or vestibular disruption.\n\n#### B. Proposed Motion Choreography for Full Platform\n1. **Scroll-Driven Parallax Depth:** Hero artwork translating at `0.35x` scroll velocity while typography remains anchored at `1.0x` for 300px before dissolving smoothly to black via `linear` opacity ramp.\n2. **Title Detail Slide-Over Drawer:** Spring transition (`stiffness: 320, damping: 28, mass: 0.8`, approx. 360ms) sliding from right edge with an obsidian glass backdrop backdrop blur (`backdrop-filter: blur(24px)`).\n3. **Carousel Momentum Rail:** Horizontal snap-scrolling on trackpad gesture with friction damping (`deceleration-rate: normal`), accompanied by progressive fade-out edges.\n\n---\n\n### 3. System Extension Across the Product Ecosystem\n\n- **Title Details Page:**\n  - Hero header expands to trailer viewport with playback state controls (seek scrubber, quality selector 4K/1080p, audio language channel selector, and plan-based error toasts such as *\"Device limit reached: 2/2 active streams\"*).\n  - Watched status gate: Review and star-rating eligibility only unlocks if title shows `>90% watched` in simulated history.\n- **Mobile Responsive Adaptation:**\n  - Top navigation collapses into a sticky frosted bottom tab bar (*Discover, Search, Watchlist, Profile*).\n  - Filter pills convert into a horizontally scrolling thumb-accessible chip carousel.\n  - Top 10 rankings switch from a 4-column horizontal card grid into a portrait vertical snap-rail with large left-anchored numeral badges.\n- **Plans & Device Management:**\n  - Card comparison (Standard HD vs. Cinema Tier 4K HDR) with simulated renewal preferences and active registered hardware revoking (e.g., Living Room TV, iPad Pro, MacBook).\n- **Staff Administration Portal:**\n  - Seamlessly reuses the same dark obsidian tokens (`#0A0C16`, `#121528`), substituting discovery rails with tabular catalog management (metadata batch-tagging, audio stream ingest status, and report telemetry)."
+    },
+    {
+      "suggestion": "Open the Title Detail Drawer to view trailer playback and season episodes"
+    },
+    {
+      "suggestion": "Show the mobile responsive version of this discovery screen"
+    },
+    {
+      "suggestion": "Generate the Plan Comparison & Device Management screen"
+    }
+  ],
+  "projectId": "10648150967291044792",
+  "sessionId": "9456939863748480301"
+}

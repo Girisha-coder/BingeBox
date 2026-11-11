@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BingeBox - Elite Cinematic Streaming Sandbox</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&amp;family=Syne:wght@600..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary": "#b9c8de",
+            "inverse-primary": "#4350cc",
+            "on-background": "#e1e1f0",
+            "secondary-fixed": "#dfe0ff",
+            "on-secondary-container": "#a7afff",
+            "surface-bright": "#373844",
+            "on-tertiary": "#233143",
+            "surface-container-high": "#282934",
+            "inverse-on-surface": "#2e303b",
+            "primary": "#bdc2ff",
+            "surface-container-highest": "#323440",
+            "tertiary-container": "#5c6b7e",
+            "on-surface-variant": "#c6c5d6",
+            "on-surface": "#e1e1f0",
+            "inverse-surface": "#e1e1f0",
+            "surface-tint": "#bdc2ff",
+            "on-tertiary-fixed": "#0d1c2d",
+            "on-primary": "#03139f",
+            "secondary-container": "#2f3aa2",
+            "primary-container": "#4f5cd8",
+            "surface-container-low": "#191b26",
+            "secondary": "#bdc2ff",
+            "on-primary-container": "#e9e9ff",
+            "surface": "#11131d",
+            "error": "#ffb4ab",
+            "on-secondary-fixed": "#000766",
+            "on-tertiary-fixed-variant": "#39485a",
+            "on-primary-fixed": "#000767",
+            "surface-variant": "#323440",
+            "surface-container-lowest": "#0c0e18",
+            "outline-variant": "#454654",
+            "on-secondary-fixed-variant": "#2f3aa2",
+            "tertiary-fixed": "#d4e4fa",
+            "error-container": "#93000a",
+            "on-secondary": "#131f8b",
+            "background": "#11131d",
+            "outline": "#908f9f",
+            "surface-dim": "#11131d",
+            "on-primary-fixed-variant": "#2835b3",
+            "tertiary-fixed-dim": "#b9c8de",
+            "primary-fixed": "#dfe0ff",
+            "surface-container": "#1d1f2a",
+            "on-tertiary-container": "#dfecff",
+            "primary-fixed-dim": "#bdc2ff",
+            "secondary-fixed-dim": "#bdc2ff",
+            "on-error-container": "#ffdad6",
+            "on-error": "#690005"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "3.5rem",
+            "gutter": "1.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "gutter-mobile": "1rem",
+            "margin-mobile": "1.25rem",
+            "space-xl": "2.5rem"
+          },
+          "fontFamily": {
+            "title-sm": ["Plus Jakarta Sans"],
+            "display-hero-mobile": ["Syne"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-caps": ["Plus Jakarta Sans"],
+            "headline-lg": ["Syne"],
+            "body-md": ["Plus Jakarta Sans"],
+            "display-hero": ["Syne"],
+            "headline-xl": ["Syne"],
+            "headline-xl-mobile": ["Syne"],
+            "label-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "title-sm": ["18px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600"}],
+            "display-hero-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+            "body-lg": ["16px", {"lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400"}],
+            "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "label-caps": ["11px", {"lineHeight": "14px", "letterSpacing": "0.12em", "fontWeight": "700"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "700"}],
+            "body-md": ["14px", {"lineHeight": "22px", "letterSpacing": "0.01em", "fontWeight": "400"}],
+            "display-hero": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.03em", "fontWeight": "800"}],
+            "headline-xl": ["44px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+            "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #0c0e18;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #323440;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #4f5cd8;
+    }
+    .indigo-glow {
+      box-shadow: 0 0 36px -6px rgba(79, 92, 216, 0.45);
+    }
+    .indigo-subtle-glow {
+      box-shadow: 0 0 20px -4px rgba(79, 92, 216, 0.25);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col relative overflow-x-hidden antialiased">
+<!-- Atmospheric Ambient Background Light Flares -->
+<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+<div class="absolute -top-[20%] left-1/4 w-[750px] h-[750px] rounded-full bg-primary-container/15 blur-[140px]"></div>
+<div class="absolute top-[40%] -right-[15%] w-[600px] h-[600px] rounded-full bg-secondary-container/10 blur-[130px]"></div>
+<div class="absolute -bottom-[10%] left-1/3 w-[500px] h-[500px] rounded-full bg-primary-container/10 blur-[150px]"></div>
+</div>
+<!-- Notice Banner -->
+<div class="w-full bg-surface-container-lowest border-b border-outline-variant/20 px-4 py-1.5 text-center relative z-50">
+<div class="flex items-center justify-center gap-2 text-on-surface-variant font-label-caps text-label-caps tracking-widest">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+<span>SIMULATED EDUCATIONAL PLATFORM • Course Project Sandbox • All Media &amp; Bundled Videos Are Placeholder Concepts</span>
+</div>
+</div>
+<!-- SHARED COMPONENT: TopNavBar -->
+<header class="docked full-width top-0 sticky z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-md border-b border-outline-variant/20 dark:border-outline-variant/20 shadow-2xl">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin py-space-sm">
+<!-- Brand & Primary Navigation Cluster -->
+<div class="flex items-center gap-8 lg:gap-10">
+<a class="flex items-center gap-2.5 group" href="#">
+<div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-secondary-container to-primary-container p-0.5 indigo-subtle-glow flex items-center justify-center">
+<div class="w-full h-full bg-surface-container-lowest rounded-[6px] flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="play_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+</div>
+</div>
+<span class="text-headline-md font-headline-md font-extrabold tracking-tight text-primary dark:text-primary">BingeBox</span>
+</a>
+<!-- Desktop Navigation Links from JSON Anchor -->
+<nav class="hidden md:flex items-center space-x-6 text-body-md font-body-md">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface transition-colors duration-150" href="#">Movies</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface transition-colors duration-150" href="#">Series</a>
+<a class="text-primary dark:text-primary font-semibold border-b-2 border-primary pb-1" href="#">Top 10</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface transition-colors duration-150" href="#">New &amp; Noteworthy</a>
+</nav>
+</div>
+<!-- Center-Right: Search Bar & Actions -->
+<div class="flex items-center gap-4">
+<!-- Expandable Search Input -->
+<div class="relative hidden sm:flex items-center">
+<div class="flex items-center bg-surface-container-low/90 border border-outline-variant/30 rounded-full px-3.5 py-1.5 focus-within:border-primary-container focus-within:ring-1 focus-within:ring-primary-container transition-all w-60 lg:w-72">
+<span class="material-symbols-outlined text-outline text-lg mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-0 p-0 text-body-md text-on-surface placeholder:text-outline-variant focus:ring-0 w-full outline-none" placeholder="Titles, genres, directors..." type="text"/>
+<kbd class="text-label-caps font-label-caps bg-surface-container-high text-on-surface-variant border border-outline-variant/30 rounded px-1.5 py-0.5 ml-1">⌘K</kbd>
+</div>
+</div>
+<!-- Trailing Icon Actions from JSON -->
+<div class="flex items-center space-x-2 text-on-surface-variant">
+<button class="p-2 hover:text-primary dark:hover:text-primary transition-colors duration-200" title="Subtitles &amp; Audio">
+<span class="material-symbols-outlined text-xl" data-icon="subtitles">subtitles</span>
+</button>
+<button class="p-2 hover:text-primary dark:hover:text-primary transition-colors duration-200" title="Audio / Visual Tuning">
+<span class="material-symbols-outlined text-xl" data-icon="tune">tune</span>
+</button>
+</div>
+<!-- Guest preview badge -->
+<div class="hidden xl:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high/60 border border-outline-variant/20 text-label-sm font-label-sm text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed-dim"></span>
+<span>Guest Preview</span>
+</div>
+<!-- Trailing secondary action (Kids profile switcher) -->
+<button class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant/30 hover:border-primary-container/50 transition-all text-body-md font-body-md text-on-surface cursor-pointer" id="profileModeToggle">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span id="profileModeLabel">Kids</span>
+</button>
+<!-- Trailing Primary Action (Sign In) -->
+<button class="transition duration-200 active:scale-95 bg-primary-container hover:bg-inverse-primary text-on-primary-container font-headline-md font-semibold text-body-md px-4 py-1.5 rounded-full indigo-subtle-glow">
+          Sign In
+        </button>
+<!-- Account Circle Avatar -->
+<button class="p-1 text-on-surface-variant hover:text-primary transition-colors" title="User profile avatar switcher">
+<span class="material-symbols-outlined text-2xl" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- MAIN VIEWPORT CONTAINER -->
+<main class="flex-grow z-10">
+<!-- ATMOSPHERIC FEATURE HERO SPOTLIGHT: 'CHRONOS: ZERO' -->
+<section class="relative w-full min-h-[640px] lg:min-h-[720px] flex items-center overflow-hidden border-b border-outline-variant/20">
+<!-- High Quality Key Art Image Canvas -->
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover object-center filter brightness-75 contrast-125" data-alt="An expansive, dark sci-fi cinematic backdrop depicting an orbital space chronometer station suspended high above an ominous deep indigo Earth. Electric sapphire and violet particle lights radiate from a fractured temporal ring, while soft volumetric mists drift through deep obsidian shadow. Ultra-high definition aesthetic with dramatic rim lighting and deep black shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdxCj5egQy46m7P5SGk_xHhFDez3XEEXZH9dui0ad_qh-gkgz3m1p9dIvnr0WdyqRe4T1225eElQJCZivLWUctZyiRjBtUuDadWFR7r-wmtTTv4c0IvszSrcR_J63_mRJixSSI25Ek7N5jQxYrsTGI1EyXfNT-BoErB6ugShJeP5atnm31QZqJc2noOXtgtzcmmJM8-lOnW4NeNKMNLizhIvbduO4ehNRDXXOI-NC2rUe_lEgdXmz2JC5GldsNMQfnJTEIdqbFPPu1"/>
+<!-- Cinematic Deep Vignettes and Gradient Bleeds -->
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/70 to-transparent"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-surface-container-lowest via-surface-container-lowest/80 to-transparent"></div>
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_40%,rgba(79,92,216,0.25)_0%,transparent_60%)]"></div>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto px-margin-mobile md:px-margin py-space-xl w-full flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+<!-- Hero Left Column: Meta & Call to Actions -->
+<div class="max-w-2xl space-y-4">
+<!-- Badges & Accreditations Pill Strip -->
+<div class="flex flex-wrap items-center gap-2">
+<span class="bg-primary-container text-on-primary-container font-label-caps text-label-caps px-2.5 py-0.5 rounded-full uppercase tracking-wider indigo-subtle-glow">
+              TOP #1 TODAY
+            </span>
+<span class="bg-surface-container-high/80 backdrop-blur border border-outline-variant/30 text-on-surface-variant font-label-caps text-label-caps px-2.5 py-0.5 rounded-full">
+              4K UHD • HDR10
+            </span>
+<span class="bg-surface-container-high/80 backdrop-blur border border-outline-variant/30 text-on-surface-variant font-label-caps text-label-caps px-2.5 py-0.5 rounded-full">
+              Dolby Atmos 7.1
+            </span>
+<span class="flex items-center gap-1 bg-surface-container-high/80 backdrop-blur border border-outline-variant/30 text-primary font-label-caps text-label-caps px-2.5 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-xs text-primary" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+              IMDb 8.9
+            </span>
+<span class="bg-surface-container-high/80 backdrop-blur border border-outline-variant/30 text-on-surface-variant font-label-caps text-label-caps px-2 py-0.5 rounded">
+              TV-MA
+            </span>
+<span class="text-primary font-label-caps text-label-caps px-2 py-0.5 font-semibold">
+              Season 2 Premiere
+            </span>
+</div>
+<!-- Feature Title -->
+<h1 class="text-display-hero-mobile md:text-display-hero font-display-hero tracking-tight text-on-surface leading-none">
+            CHRONOS: ZERO
+          </h1>
+<!-- Logline -->
+<p class="text-body-lg font-body-lg text-on-surface-variant max-w-xl leading-relaxed">
+            When an orbital chronometer desynchronizes from Earth, an astrophysicist discovers fragments of memories from lives she hasn't lived yet.
+          </p>
+<!-- Status Audio/Subtitles Chip -->
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-tertiary">
+<span class="material-symbols-outlined text-base" data-icon="language">language</span>
+<span>Audio: EN, FR, JP • Subs: 18 available (CC, Audio Described)</span>
+</div>
+<!-- Action Control Cluster -->
+<div class="flex flex-wrap items-center gap-3 pt-2">
+<!-- Primary Action -->
+<button class="flex items-center gap-2 bg-on-surface hover:bg-white text-surface-container-lowest font-headline-md font-bold text-body-lg px-6 py-3 rounded-full transition-all duration-200 shadow-xl hover:shadow-primary-container/30 hover:scale-[1.02] active:scale-95">
+<span class="material-symbols-outlined text-2xl" data-icon="play_arrow" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+<span>Watch Preview Reel</span>
+</button>
+<!-- Resume Button -->
+<button class="flex items-center gap-2 bg-surface-container/80 hover:bg-surface-container-high text-on-surface border border-outline-variant/30 font-headline-md text-body-md px-5 py-3 rounded-full backdrop-blur-md transition-all active:scale-95">
+<span class="material-symbols-outlined text-xl text-primary" data-icon="fast_forward">fast_forward</span>
+<span>Resume Ep. 3 <span class="text-outline text-xs font-normal">(24m left)</span></span>
+</button>
+<!-- Add to Watchlist -->
+<button class="w-12 h-12 rounded-full bg-surface-container/80 hover:bg-surface-container-high border border-outline-variant/30 flex items-center justify-center text-on-surface hover:text-primary transition-all active:scale-95" title="Add to Watchlist">
+<span class="material-symbols-outlined text-2xl" data-icon="add">add</span>
+</button>
+<!-- Info Drawer Trigger -->
+<button class="w-12 h-12 rounded-full bg-surface-container/80 hover:bg-surface-container-high border border-outline-variant/30 flex items-center justify-center text-on-surface hover:text-primary transition-all active:scale-95" onclick="toggleModal('modalGhostFrequency')" title="Quick Title Info">
+<span class="material-symbols-outlined text-2xl" data-icon="info">info</span>
+</button>
+</div>
+</div>
+<!-- Hero Right Column: Mini Upcoming Episode Preview Card -->
+<div class="w-full lg:w-80 bg-surface-container-low/80 backdrop-blur-xl border border-outline-variant/30 rounded-xl p-4 shadow-2xl relative">
+<div class="flex items-center justify-between pb-2 border-b border-outline-variant/20 mb-3">
+<span class="text-label-caps font-label-caps uppercase text-primary tracking-wider">Next in Queue</span>
+<span class="text-label-sm font-label-sm text-outline">Ep. 4 Tomorrow</span>
+</div>
+<div class="relative rounded-lg overflow-hidden aspect-video mb-3 group">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A dark and moody high-tech lab interior filled with holographic astronomical telemetry charts and flickering blue monitors. An astrophysicist in silhouette examines a suspended quantum gyroscope casting concentric glowing cyan shadows across stainless steel walls." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg18jn0XhBDfiWfwzHiE28qa0szgscr-fRgHOuZEGTfT-XcrCBijZ57NM4DXhl4mbGaD-FltHv4l_526Ti3CB-bxi9zSI-JErgdLB423pEkjVO0F_5KcUhO1GQO57Y69e8t029IABALmxla4Dugm6kHq-Gi-puUoFLJfBvtw2trvlQofesGsQqP0PMITlPPBIcAxfeWLeLjriefHAWMrxmQUA_ayd8ISxHzZvIQADPM7Edm0YD0AnBO-I1tAOUK5wMj5o8DQQ_8RrI"/>
+<div class="absolute inset-0 bg-surface-container-lowest/40 flex items-center justify-center group-hover:bg-surface-container-lowest/20 transition-colors">
+<span class="material-symbols-outlined text-3xl text-on-surface group-hover:scale-110 transition-transform" data-icon="play_circle">play_circle</span>
+</div>
+<!-- Progress scrubber -->
+<div class="absolute bottom-0 left-0 right-0 h-1 bg-surface-container-highest">
+<div class="h-full bg-primary-container w-2/5"></div>
+</div>
+</div>
+<div class="space-y-1">
+<h4 class="text-title-sm font-title-sm text-on-surface font-semibold">S2:E4 "The Entangled Horizon"</h4>
+<p class="text-label-sm font-label-sm text-on-surface-variant line-clamp-2">Elena runs a reverse sweep against the particle drift before the atmospheric seal collapses.</p>
+</div>
+<div class="mt-3 pt-3 border-t border-outline-variant/20 flex items-center justify-between text-label-sm font-label-sm">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="graphic_eq">graphic_eq</span>
+<span>English [Original]</span>
+</div>
+<button class="text-primary hover:underline font-medium">Change Track</button>
+</div>
+</div>
+</div>
+</section>
+<!-- INTERACTIVE CATALOG FILTER BAR (Catalog Size: 162 titles) -->
+<section class="w-full bg-surface-container-lowest/90 backdrop-blur border-b border-outline-variant/20 py-4 sticky top-[69px] z-40">
+<div class="max-w-7xl mx-auto px-margin-mobile md:px-margin">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<!-- Title Counter & Search Context -->
+<div class="flex items-center gap-3">
+<span class="flex h-2.5 w-2.5 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
+</span>
+<div class="text-body-md font-body-md">
+<span class="text-on-surface font-semibold">Browsing 162 Titles</span>
+<span class="text-outline text-label-sm font-label-sm">(Viewing 18 featured)</span>
+</div>
+</div>
+<!-- Active Filter Pill Tags -->
+<div class="flex items-center flex-wrap gap-2 text-label-sm font-label-sm">
+<span class="inline-flex items-center gap-1 bg-surface-container-high border border-outline-variant/40 px-2.5 py-1 rounded-full text-on-surface">
+<span>Audio: Original English</span>
+<button class="hover:text-primary"><span class="material-symbols-outlined text-sm" data-icon="close">close</span></button>
+</span>
+<span class="inline-flex items-center gap-1 bg-surface-container-high border border-outline-variant/40 px-2.5 py-1 rounded-full text-on-surface">
+<span>IMDb: 7.5+</span>
+<button class="hover:text-primary"><span class="material-symbols-outlined text-sm" data-icon="close">close</span></button>
+</span>
+<button class="text-outline hover:text-on-surface text-label-sm font-label-sm underline ml-1">Clear all</button>
+</div>
+</div>
+<!-- Filter Chips Row -->
+<div class="flex items-center gap-2 overflow-x-auto custom-scrollbar pt-3 pb-1">
+<span class="text-label-caps font-label-caps text-outline uppercase mr-1 flex-shrink-0">Genres:</span>
+<button class="px-3.5 py-1.5 rounded-full bg-primary-container text-on-primary-container font-headline-md text-label-sm font-semibold flex-shrink-0 transition-all">All</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container border border-outline-variant/30 text-on-surface-variant hover:border-primary-container/40 hover:text-on-surface text-label-sm font-medium flex-shrink-0 transition-all">Sci-Fi</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container border border-outline-variant/30 text-on-surface-variant hover:border-primary-container/40 hover:text-on-surface text-label-sm font-medium flex-shrink-0 transition-all">Psychological Thriller</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container border border-outline-variant/30 text-on-surface-variant hover:border-primary-container/40 hover:text-on-surface text-label-sm font-medium flex-shrink-0 transition-all">Neo-Noir</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container border border-outline-variant/30 text-on-surface-variant hover:border-primary-container/40 hover:text-on-surface text-label-sm font-medium flex-shrink-0 transition-all">Documentary</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container border border-outline-variant/30 text-on-surface-variant hover:border-primary-container/40 hover:text-on-surface text-label-sm font-medium flex-shrink-0 transition-all">Animation</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container border border-outline-variant/30 text-on-surface-variant hover:border-primary-container/40 hover:text-on-surface text-label-sm font-medium flex-shrink-0 transition-all">Drama</button>
+<div class="h-4 w-px bg-outline-variant/30 mx-1 flex-shrink-0"></div>
+<!-- Dropdown Filter Pills -->
+<div class="flex items-center gap-2 flex-shrink-0">
+<!-- Audio Language Filter -->
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-label-sm text-on-surface hover:border-outline transition">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="translate">translate</span>
+<span>All Audio (EN, JP, ES, DE, FR)</span>
+<span class="material-symbols-outlined text-sm" data-icon="expand_more">expand_more</span>
+</button>
+<!-- Subtitles Filter -->
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-label-sm text-on-surface hover:border-outline transition">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="closed_caption">closed_caption</span>
+<span>All Subs (CC, Multi-lingual)</span>
+<span class="material-symbols-outlined text-sm" data-icon="expand_more">expand_more</span>
+</button>
+<!-- Runtime Filter -->
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-label-sm text-on-surface hover:border-outline transition">
+<span class="material-symbols-outlined text-sm" data-icon="timer">timer</span>
+<span>Runtime: 90-120m</span>
+<span class="material-symbols-outlined text-sm" data-icon="expand_more">expand_more</span>
+</button>
+<!-- IMDb Rating slider button -->
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary-container/40 border border-primary/40 text-label-sm text-on-primary-container font-semibold transition">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="grade" data-weight="fill" style="font-variation-settings: 'FILL' 1;">grade</span>
+<span>7.5+ Stars</span>
+</button>
+<!-- Age Rating -->
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-label-sm text-on-surface hover:border-outline transition">
+<span>Age: TV-MA</span>
+<span class="material-symbols-outlined text-sm" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- CONTENT WRAPPER -->
+<div class="max-w-7xl mx-auto px-margin-mobile md:px-margin space-y-12 py-10">
+<!-- SECTION 1: CONTINUE WATCHING (Simulated Member State) -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<h2 class="text-headline-md font-headline-md font-bold text-on-surface">Continue Watching</h2>
+<span class="text-label-caps font-label-caps uppercase bg-surface-container-high text-primary px-2 py-0.5 rounded">Simulated Profile</span>
+</div>
+<a class="text-label-sm font-label-sm text-primary hover:underline flex items-center gap-1" href="#">
+<span>Manage History</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Card 1: Kowloon Drift -->
+<div class="group bg-surface-container-low rounded-xl border border-outline-variant/20 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 shadow-lg">
+<div class="relative aspect-video overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A rain-slicked futuristic Kowloon street drenched in moody violet neon light and reflections. High density cyber city towers with suspended steam pipes, glowing storefront hieroglyphs, and an undercover inspector standing in a long trenchcoat looking back into shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuARp9AeV4RU80qe1ABC-heZyHNrLWEhx1CnDc6N_6l2YjAmngBIDHT2Xcr8Q742vL_J6HJfMPCkA3pIloWEylrNYN6VAqyKISVV8ENp3zjjEAbzNtNJyAXgPhXs_FsS4ZNviVjvqIES1uRDXsZ59clg-K5YgvJYUL31Y_TzJewlVyaM1qQjJe6yWx0AH-V4cuonwXh3hGgqQBniQUIo13UBz-m29Aak8cq621SQtsOhIrROyI5R58GYoErXrxq99NY3aMhcTGw62BKe"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent"></div>
+<!-- Badges -->
+<span class="absolute top-2.5 left-2.5 bg-surface-container-lowest/80 backdrop-blur text-primary text-label-caps font-label-caps px-2 py-0.5 rounded">
+                RESUME
+              </span>
+<span class="absolute top-2.5 right-2.5 bg-surface-container-lowest/80 backdrop-blur text-on-surface-variant text-label-caps font-label-caps px-2 py-0.5 rounded">
+                4K HDR
+              </span>
+<!-- Hover Action Icons Overlay -->
+<div class="absolute inset-0 bg-surface-container-lowest/70 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+<button class="w-11 h-11 rounded-full bg-on-surface text-surface-container-lowest flex items-center justify-center hover:scale-110 transition-transform shadow-lg" title="Play">
+<span class="material-symbols-outlined text-2xl" data-icon="play_arrow" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-surface-container-high border border-outline-variant/40 text-on-surface flex items-center justify-center hover:text-primary transition-colors" onclick="toggleModal('modalGhostFrequency')" title="Info">
+<span class="material-symbols-outlined text-xl" data-icon="info">info</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-surface-container-high border border-outline-variant/40 text-on-surface flex items-center justify-center hover:text-error transition-colors" title="Remove from row">
+<span class="material-symbols-outlined text-xl" data-icon="close">close</span>
+</button>
+</div>
+<!-- Watch Progress Bar -->
+<div class="absolute bottom-0 left-0 right-0 h-1.5 bg-surface-container-highest">
+<div class="h-full bg-primary-container w-[68%]"></div>
+</div>
+</div>
+<div class="p-4 flex items-start justify-between">
+<div>
+<h3 class="text-title-sm font-title-sm text-on-surface font-semibold group-hover:text-primary transition-colors">Kowloon Drift</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Neo-Noir Thriller • S1:E4</p>
+</div>
+<span class="text-label-caps font-label-caps text-outline bg-surface-container-high px-2 py-1 rounded">38m left</span>
+</div>
+</div>
+<!-- Card 2: Solitude Point -->
+<div class="group bg-surface-container-low rounded-xl border border-outline-variant/20 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 shadow-lg">
+<div class="relative aspect-video overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A desolate Nordic rocky coastline under an ethereal midnight blue sky with distant lighthouse beacon slicing through coastal fog. Deep black crashing waves contrast against cold steel lighthouse architecture in an ultra crisp cinematic composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkTjsXLYexCLa7ndzEvt8wl5BSPir6LsTqCfZ5DD1Yzb_UCoKXPj0_0aGBQMiUp2bI9AFt6tgY_83-xq_eOFzo8JH92Fj9aFBqH8UvoBZVI1k5KrEtSV9F0w1we1PuDI3F4beeMbCn8pAN0FEoVAukG-aqyv4c1dAnTVL8aMzNhloJfF7bDCtXsJp8RsC0KMU7vHcXZXPNHC-JlQ3gyS5BKPbTuVg5i_xF0WVny2kJAL9oSfihYFdOKH7j8u7kyjs3hCRRT6vesTGe"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent"></div>
+<span class="absolute top-2.5 left-2.5 bg-surface-container-lowest/80 backdrop-blur text-primary text-label-caps font-label-caps px-2 py-0.5 rounded">
+                FEATURE FILM
+              </span>
+<span class="absolute top-2.5 right-2.5 bg-surface-container-lowest/80 backdrop-blur text-on-surface-variant text-label-caps font-label-caps px-2 py-0.5 rounded">
+                HD 5.1
+              </span>
+<!-- Hover Action Icons Overlay -->
+<div class="absolute inset-0 bg-surface-container-lowest/70 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+<button class="w-11 h-11 rounded-full bg-on-surface text-surface-container-lowest flex items-center justify-center hover:scale-110 transition-transform shadow-lg" title="Play">
+<span class="material-symbols-outlined text-2xl" data-icon="play_arrow" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-surface-container-high border border-outline-variant/40 text-on-surface flex items-center justify-center hover:text-primary transition-colors" onclick="toggleModal('modalGhostFrequency')" title="Info">
+<span class="material-symbols-outlined text-xl" data-icon="info">info</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-surface-container-high border border-outline-variant/40 text-on-surface flex items-center justify-center hover:text-error transition-colors" title="Remove from row">
+<span class="material-symbols-outlined text-xl" data-icon="close">close</span>
+</button>
+</div>
+<!-- Watch Progress Bar -->
+<div class="absolute bottom-0 left-0 right-0 h-1.5 bg-surface-container-highest">
+<div class="h-full bg-primary-container w-[42%]"></div>
+</div>
+</div>
+<div class="p-4 flex items-start justify-between">
+<div>
+<h3 class="text-title-sm font-title-sm text-on-surface font-semibold group-hover:text-primary transition-colors">Solitude Point</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Atmospheric Mystery • Movie</p>
+</div>
+<span class="text-label-caps font-label-caps text-outline bg-surface-container-high px-2 py-1 rounded">1h 12m left</span>
+</div>
+</div>
+<!-- Card 3: Subatomic -->
+<div class="group bg-surface-container-low rounded-xl border border-outline-variant/20 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 shadow-lg">
+<div class="relative aspect-video overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A macro-photography abstract visualization of glowing subatomic laser collisions inside a spherical hadron chamber. Swirling ribbons of sapphire, electric violet, and deep indigo photons trace concentric orbits against pitch dark spatial void." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsdHgWoTCvdScyHKa9W-WyhR4WIyDjeK6bEX8qEjonkSHpf9xzKdEBhTZ2m6Rh6_bAAP0dWzw0vk3Jm_VwL32nPcIHv4hiR_mWrt2LWdYtx0geYd41W1ieNibajQj66DncgeEtT2VlgYBn42marr53vhDqizbInJteIAJ-mH5pUQGirvaE0fl7p9sUjjUSLCdDPG4NmGY9Lwa5bcsYBfoICCbWjmq3nuSBoKenZeSzArR8xsuaHDN1f6tDlJOiGDW9a-P0Om3-jht2"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent"></div>
+<span class="absolute top-2.5 left-2.5 bg-surface-container-lowest/80 backdrop-blur text-primary text-label-caps font-label-caps px-2 py-0.5 rounded">
+                DOCUSERIES
+              </span>
+<span class="absolute top-2.5 right-2.5 bg-surface-container-lowest/80 backdrop-blur text-on-surface-variant text-label-caps font-label-caps px-2 py-0.5 rounded">
+                4K UHD
+              </span>
+<!-- Hover Action Icons Overlay -->
+<div class="absolute inset-0 bg-surface-container-lowest/70 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+<button class="w-11 h-11 rounded-full bg-on-surface text-surface-container-lowest flex items-center justify-center hover:scale-110 transition-transform shadow-lg" title="Play">
+<span class="material-symbols-outlined text-2xl" data-icon="play_arrow" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-surface-container-high border border-outline-variant/40 text-on-surface flex items-center justify-center hover:text-primary transition-colors" onclick="toggleModal('modalGhostFrequency')" title="Info">
+<span class="material-symbols-outlined text-xl" data-icon="info">info</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-surface-container-high border border-outline-variant/40 text-on-surface flex items-center justify-center hover:text-error transition-colors" title="Remove from row">
+<span class="material-symbols-outlined text-xl" data-icon="close">close</span>
+</button>
+</div>
+<!-- Watch Progress Bar -->
+<div class="absolute bottom-0 left-0 right-0 h-1.5 bg-surface-container-highest">
+<div class="h-full bg-primary-container w-[84%]"></div>
+</div>
+</div>
+<div class="p-4 flex items-start justify-between">
+<div>
+<h3 class="text-title-sm font-title-sm text-on-surface font-semibold group-hover:text-primary transition-colors">Subatomic</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Documentary Series • S1:E2</p>
+</div>
+<span class="text-label-caps font-label-caps text-outline bg-surface-container-high px-2 py-1 rounded">18m left</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: TOP 10 IN NORTH AMERICA TODAY -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<div>
+<h2 class="text-headline-md font-headline-md font-bold text-on-surface">Top 10 in North America Today</h2>
+<p class="text-body-md font-body-md text-on-surface-variant">Updated hourly based on synchronized concurrent streams</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-9 h-9 rounded-full bg-surface-container border border-outline-variant/30 flex items-center justify-center text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-9 h-9 rounded-full bg-surface-container border border-outline-variant/30 flex items-center justify-center text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Horizontal scroll carousel with gigantic metallic index numbers -->
+<div class="flex gap-6 overflow-x-auto custom-scrollbar pb-4 -mr-margin pr-margin">
+<!-- #1 Chronos: Zero -->
+<div class="flex-shrink-0 flex items-end group cursor-pointer" onclick="toggleModal('modalGhostFrequency')">
+<span class="text-[120px] font-extrabold font-headline-xl leading-none text-outline-variant/40 group-hover:text-primary-container transition-colors tracking-tighter select-none -mr-4 z-0">
+              1
+            </span>
+<div class="w-48 sm:w-56 aspect-[2/3] rounded-xl overflow-hidden bg-surface-container-low border border-outline-variant/30 relative z-10 group-hover:scale-105 group-hover:border-primary-container group-hover:indigo-subtle-glow transition-all duration-300">
+<img class="w-full h-full object-cover" data-alt="Cinematic movie poster for Chronos: Zero featuring a split profile of a female astronaut in high tech visor reflecting a shattered quantum singularity clock in electric indigo and metallic deep space tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmk6065LX48-42HByySx9meL5vSshR9xP8dNgyjbenWH2d5dr9GSm5Rqh6rrXn5R8cE6GjTMDxdeD_LjcQqdnP2DXp2m_Dnecc35UKq-BOo2NuKnggg7Up6vowWjYJ0l_eL3h99hia20x_XsgQb711sNriG_7aykaBbMEksgakAG9eV-PlFOjt6csIGa2FYeOw0k8fjJElPi5sHYbweUwlkYTxsE9ojdb64Njukr0KlPiMdswIzMcwmOqmzZPLSqSXxbm3eJ9oTmaL"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 flex flex-col justify-end">
+<span class="text-title-sm font-title-sm font-bold text-on-surface">Chronos: Zero</span>
+<span class="text-label-caps font-label-caps text-primary">Sci-Fi • IMDb 8.9</span>
+<div class="mt-2 flex items-center gap-2">
+<span class="w-7 h-7 rounded-full bg-white text-black flex items-center justify-center">
+<span class="material-symbols-outlined text-base" data-icon="play_arrow" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</span>
+<span class="text-label-sm font-label-sm text-white">Play Reel</span>
+</div>
+</div>
+</div>
+</div>
+<!-- #2 Ghost Frequency -->
+<div class="flex-shrink-0 flex items-end group cursor-pointer" onclick="toggleModal('modalGhostFrequency')">
+<span class="text-[120px] font-extrabold font-headline-xl leading-none text-outline-variant/40 group-hover:text-primary-container transition-colors tracking-tighter select-none -mr-4 z-0">
+              2
+            </span>
+<div class="w-48 sm:w-56 aspect-[2/3] rounded-xl overflow-hidden bg-surface-container-low border border-outline-variant/30 relative z-10 group-hover:scale-105 group-hover:border-primary-container group-hover:indigo-subtle-glow transition-all duration-300">
+<img class="w-full h-full object-cover" data-alt="Atmospheric movie poster for Ghost Frequency showing an abandoned Cold War radar dish array shrouded in nocturnal mist under faint aurora borealis in dark titanium and muted cyan palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOUKlu8GMWyaYWWHRZ1FYhh1pd-Pf-YWFXnhgGPXnMB2n1cTnwvSuPeU919hiLCRdqjUcc3jPjsVwDfgRPfwMVweyIMDkw42opvBL5zZF3qSvNcTQbWaNV5uFHGY-zhEW8mIwB-26SeKtAMmIYjTQpuolIiuMlYPui3FGO78JmeABQgNYSskVH5heD-GJcpG1MxlkNWPi53Ks5rXlC9HRyqCJYG7xH1yrBVf9Yir2sA18JuLwWdFbLGZ2NFximL0V7OAFV_d9P8WwH"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 flex flex-col justify-end">
+<span class="text-title-sm font-title-sm font-bold text-on-surface">Ghost Frequency</span>
+<span class="text-label-caps font-label-caps text-primary">Thriller • IMDb 8.4</span>
+<div class="mt-2 flex items-center gap-2">
+<span class="w-7 h-7 rounded-full bg-white text-black flex items-center justify-center">
+<span class="material-symbols-outlined text-base" data-icon="play_arrow" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</span>
+<span class="text-label-sm font-label-sm text-white">Open Drawer</span>
+</div>
+</div>
+</div>
+</div>
+<!-- #3 The Iron Garden -->
+<div class="flex-shrink-0 flex items-end group cursor-pointer" onclick="toggleModal('modalGhostFrequency')">
+<span class="text-[120px] font-extrabold font-headline-xl leading-none text-outline-variant/40 group-hover:text-primary-container transition-colors tracking-tighter select-none -mr-4 z-0">
+              3
+            </span>
+<div class="w-48 sm:w-56 aspect-[2/3] rounded-xl overflow-hidden bg-surface-container-low border border-outline-variant/30 relative z-10 group-hover:scale-105 group-hover:border-primary-container group-hover:indigo-subtle-glow transition-all duration-300">
+<img class="w-full h-full object-cover" data-alt="Movie poster for The Iron Garden depicting mechanical metallic flowers and copper vines growing over brutalist concrete architectural arches in a dark, atmospheric post-industrial setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDZ2FvHgb_S6BGOkGrnKQ-8kuu9YaJ3IX5kZetwP4oftDjpr9vuEakWEgYNeymgqnX-LX1tzVWkICxN9ItEs067A6rn9ambO7ClWvYcxKTZI-YOpiFA2dROQYNvB7iTIcF8-MbOB3orJBt57FKuwKhGZBGTqzEKUYI5gApfMwIPIrb_8B4sglOMVzk7_ktEgnHy7Q4u94P5-9D1PrDeUUzM0c1W5oEHiVspENnsUd49saWnvQ2mURgWq93XKjA0LTCcEmX-HZHFHTk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 flex flex-col justify-end">
+<span class="text-title-sm font-title-sm font-bold text-on-surface">The Iron Garden</span>
+<span class="text-label-caps font-label-caps text-primary">Drama • IMDb 8.1</span>
+<div class="mt-2 flex items-center gap-2">
+<span class="w-7 h-7 rounded-full bg-white text-black flex items-center justify-center">
+<span class="material-symbols-outlined text-base" data-icon="play_arrow" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</span>
+<span class="text-label-sm font-label-sm text-white">Details</span>
+</div>
+</div>
+</div>
+</div>
+<!-- #4 Velocity Protocol -->
+<div class="flex-shrink-0 flex items-end group cursor-pointer" onclick="toggleModal('modalGhostFrequency')">
+<span class="text-[120px] font-extrabold font-headline-xl leading-none text-outline-variant/40 group-hover:text-primary-container transition-colors tracking-tighter select-none -mr-4 z-0">
+              4
+            </span>
+<div class="w-48 sm:w-56 aspect-[2/3] rounded-xl overflow-hidden bg-surface-container-low border border-outline-variant/30 relative z-10 group-hover:scale-105 group-hover:border-primary-container group-hover:indigo-subtle-glow transition-all duration-300">
+<img class="w-full h-full object-cover" data-alt="High-octane action thriller poster showing futuristic aerodynamic pursuit vehicles racing down an elevated glass suspension highway at dusk with red tail streaks and sapphire city skylines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiF7T21gXw7OVMhkkBNifNYv9Ww19Rko_uEbMv-BjND92wqMyMTBqzgD5kCEmzRmf4fsQNvRts-XHB0I8BgpFu4IngFQh1fE5ljtRdbvfMKeeTRb7P1BmyPr3eN-fL8-j4dFIMZ3eRWm_6ZwosYoS2l8IDhiTPBXMnXOqeKEioc02tjCQx4KIy4hFcrIIhz9UAopJQ-jqK9usRkQLFijk1uMIVPmh_TGKVXayWbRc2Um-Ei8QgB63zaj9bRHfT2CVoORaXTVocArj5"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 flex flex-col justify-end">
+<span class="text-title-sm font-title-sm font-bold text-on-surface">Velocity Protocol</span>
+<span class="text-label-caps font-label-caps text-primary">Action • IMDb 7.9</span>
+<div class="mt-2 flex items-center gap-2">
+<span class="w-7 h-7 rounded-full bg-white text-black flex items-center justify-center">
+<span class="material-symbols-outlined text-base" data-icon="play_arrow" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</span>
+<span class="text-label-sm font-label-sm text-white">Details</span>
+</div>
+</div>
+</div>
+</div>
+<!-- #5 Deep Mirage -->
+<div class="flex-shrink-0 flex items-end group cursor-pointer" onclick="toggleModal('modalGhostFrequency')">
+<span class="text-[120px] font-extrabold font-headline-xl leading-none text-outline-variant/40 group-hover:text-primary-container transition-colors tracking-tighter select-none -mr-4 z-0">
+              5
+            </span>
+<div class="w-48 sm:w-56 aspect-[2/3] rounded-xl overflow-hidden bg-surface-container-low border border-outline-variant/30 relative z-10 group-hover:scale-105 group-hover:border-primary-container group-hover:indigo-subtle-glow transition-all duration-300">
+<img class="w-full h-full object-cover" data-alt="Subsea psychological exploration movie poster showing a submersible exploration craft descending past gargantuan bioluminescent oceanic trenches with glowing indigo marine fauna." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGhvclouhsauguz3KOmGVMaBGdYO_9hdn-8pCKzhPRoRQgNFODv-iqwfMJp42Z9k_y406-K1Mok1KA5YMnuH9PE__lvf2k2v2-dWhnXjA3EYK6946FI2Gt3blOQjmz8KXW-Xbt5SazUq6KRkSJIpoSJZIX76IF9BV6cu-O09swTJ3Dx8eGiZKk5VOFzi-Gwy4UJ-8SkLbBtWFHkyFWTL4UjEDruSaiNDSW47z309b0HcrOY2HQOxUfaF7LjT7D0Hy_d2LHmlzDzWYW"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 flex flex-col justify-end">
+<span class="text-title-sm font-title-sm font-bold text-on-surface">Deep Mirage</span>
+<span class="text-label-caps font-label-caps text-primary">Mystery • IMDb 8.3</span>
+<div class="mt-2 flex items-center gap-2">
+<span class="w-7 h-7 rounded-full bg-white text-black flex items-center justify-center">
+<span class="material-symbols-outlined text-base" data-icon="play_arrow" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</span>
+<span class="text-label-sm font-label-sm text-white">Details</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: MULTI-LANGUAGE CINEMA & CRITICAL ACCLAIM -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<div>
+<h2 class="text-headline-md font-headline-md font-bold text-on-surface">Multi-Language Cinema &amp; Acclaimed Masters</h2>
+<p class="text-body-md font-body-md text-on-surface-variant">Preserving original voice tracks, lossless master audio, and curated translations</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-label-caps font-label-caps text-primary border border-primary/30 px-2.5 py-1 rounded-full">Lossless FLAC / Atmos</span>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1: Japanese Cinema Master -->
+<div class="bg-surface-container-low rounded-xl border border-outline-variant/20 overflow-hidden hover:border-primary/50 transition-all group">
+<div class="aspect-[16/10] relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Cinematic still from a Japanese neo-noir film showing an antique tea house framed through rain droplets on a high rise window with Tokyo midnight skyline in deep sapphire and charcoal tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyzSARy1ZwidjRVI_FgxPpqN-MxMHiUlplEVENGvIhvVmqqvjvbJ2OIH2-LPB23hyZFtymQRbvU4yNvwTwL-gvvEne3Ti0GpT8HW1JDwmDkvArH2ZMO5UfdxFWj203DOXXhr7_fItisX6K_rq-CDi5_Q5K4ntYckEFQWPOFGVB_cWvagxSKcg25IlOWLYTSjPJulfZJ7QLQEhmpZMmLF-1oZGQPcE6jy8gIp2FNInrbXnaCqhe4fULY4UcJpci4cg1-vLwcqODL62-"/>
+<div class="absolute top-2 left-2 bg-surface-container-lowest/90 px-2 py-0.5 rounded text-label-caps font-label-caps text-on-surface flex items-center gap-1">
+<span>🇯🇵 Japanese</span>
+</div>
+<div class="absolute bottom-2 left-2 right-2 bg-surface-container-lowest/80 backdrop-blur-md px-2.5 py-1.5 rounded text-label-sm font-label-sm text-on-surface-variant">
+                Original Audio • 24 Subtitle Streams
+              </div>
+</div>
+<div class="p-3.5">
+<h4 class="text-title-sm font-title-sm text-on-surface font-semibold">Shadows of Shinjuku</h4>
+<p class="text-label-sm font-label-sm text-outline">Directed by Kenji Sato • 2023</p>
+</div>
+</div>
+<!-- Card 2: Spanish Masterpiece -->
+<div class="bg-surface-container-low rounded-xl border border-outline-variant/20 overflow-hidden hover:border-primary/50 transition-all group">
+<div class="aspect-[16/10] relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Cinematic wide shot from a Spanish surrealist mystery showing sun-bleached baroque archways casting long geometric shadows over an empty Andalusian plaza at twilight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1YYu-vqfsLFz9TthCOM0gH56ukAC_HB8oTfqwirewIvMwLd_Bzf5NW09SGovfWeCIzP0a_RsE4JwbFBduRXMkbSKStUYJGOwHkm697V2RqArwb2G5Hc16LxjDp0hf2TCgRZ3q1kxnVp3s-63Nj2gsSxVOUGdFIIaivEb8ENZd6u4o4NtzVbjhoF8ybtSVxzElc9H6k15r0D97COe2itjVoDnL1lAjZ6ya3Q0Pxjt2Wn8xsoSKbfVvO3AypWp8qCPtq4XGNG3N_Iyp"/>
+<div class="absolute top-2 left-2 bg-surface-container-lowest/90 px-2 py-0.5 rounded text-label-caps font-label-caps text-on-surface flex items-center gap-1">
+<span>🇪🇸 Spanish</span>
+</div>
+<div class="absolute bottom-2 left-2 right-2 bg-surface-container-lowest/80 backdrop-blur-md px-2.5 py-1.5 rounded text-label-sm font-label-sm text-on-surface-variant">
+                Castilian 4K Atmos • Director Commentary
+              </div>
+</div>
+<div class="p-3.5">
+<h4 class="text-title-sm font-title-sm text-on-surface font-semibold">El Silencio de Arena</h4>
+<p class="text-label-sm font-label-sm text-outline">Directed by Mateo Ortiz • 2024</p>
+</div>
+</div>
+<!-- Card 3: French Criterion Master -->
+<div class="bg-surface-container-low rounded-xl border border-outline-variant/20 overflow-hidden hover:border-primary/50 transition-all group">
+<div class="aspect-[16/10] relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Cinematic still from a French psychological drama showing a smoky Parisian philosopher cafe interior at dusk with dim amber desk lamps illuminating intense discussion." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmQ9E-vsYP8_u4W9R9t1JaPd_aCu6-F0DGKO0EUKKgXobs8wZbyKsSvt2MLJAkblQa8-NREO0w6153RrO4ewqvC_pCrNNCGl7ZDI5HJkXQiuMao_VtNR8K-zfTYvkh88YYLvg5WXSMtvHapRzM1cKCpQ_kIIANZwUfXpXRn3F-wGMkHbbMtR0_FrOJwOR68k7L57M_KClA-2AQx7LSPZeTA8xQndaUxUaiMSiOpm8kvkgYm-mik1E7PAgWORAFuni6y0PIzVgQXa5N"/>
+<div class="absolute top-2 left-2 bg-surface-container-lowest/90 px-2 py-0.5 rounded text-label-caps font-label-caps text-on-surface flex items-center gap-1">
+<span>🇫🇷 French</span>
+</div>
+<div class="absolute bottom-2 left-2 right-2 bg-surface-container-lowest/80 backdrop-blur-md px-2.5 py-1.5 rounded text-label-sm font-label-sm text-on-surface-variant">
+                Criterion 4K Master • Original Monaural
+              </div>
+</div>
+<div class="p-3.5">
+<h4 class="text-title-sm font-title-sm text-on-surface font-semibold">Chroniques de Minuit</h4>
+<p class="text-label-sm font-label-sm text-outline">Directed by Claire Dupont • 2022</p>
+</div>
+</div>
+<!-- Card 4: German Speculative Series (Handling Unknown State) -->
+<div class="bg-surface-container-low rounded-xl border border-outline-variant/20 overflow-hidden hover:border-primary/50 transition-all group">
+<div class="aspect-[16/10] relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Cinematic still from a German speculative architecture thriller showing the stark glass and titanium corridors of a subterranean particle bunker in the Black Forest." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaxerKzG5wEllDDR3KMdkmgRUOPJ-LzhHhOq-Q0v7LItRx1nypuMswGIyQH8qHkUsixbFXMGcFfxRLcO27rD-9Q4XoVUs49AR9qKfPv63LlsMdW5yZOOJpPxuxEOSxyVNapV9rGyYa6UKKa2CDEGivQbL9gWtxAQNL73WGGBMiW7T0_cfSAcfjuxDpcUiCT3sJVUQMOjcE2BRrmMsiTMNOrPPYZsX2FwneJ4mFAwvrUGeZLkU7gc43AZuR9x_t9AQtQSI7Ih3zJL4I"/>
+<div class="absolute top-2 left-2 bg-surface-container-lowest/90 px-2 py-0.5 rounded text-label-caps font-label-caps text-on-surface flex items-center gap-1">
+<span>🇩🇪 German</span>
+</div>
+<div class="absolute bottom-2 left-2 right-2 bg-surface-container-lowest/80 backdrop-blur-md px-2.5 py-1.5 rounded text-label-sm font-label-sm text-on-surface-variant flex items-center justify-between">
+<span>Dolby TrueHD 7.1</span>
+<span class="text-outline text-[10px]">Subs: Verified</span>
+</div>
+</div>
+<div class="p-3.5">
+<h4 class="text-title-sm font-title-sm text-on-surface font-semibold">Tiefenstruktur</h4>
+<p class="text-label-sm font-label-sm text-outline">Directed by Henrik Weber • 2024</p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 8: PLAN & ACCOUNT QUICK ACCESS BANNER -->
+<section class="rounded-2xl bg-gradient-to-r from-surface-container to-surface-container-low border border-primary/20 p-8 relative overflow-hidden">
+<div class="absolute right-0 top-0 bottom-0 w-1/3 bg-gradient-to-l from-primary-container/20 to-transparent pointer-events-none"></div>
+<div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+<div class="space-y-2 max-w-2xl">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="auto_awesome" data-weight="fill" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="text-label-caps font-label-caps uppercase text-primary tracking-wider">Cinema Tier Experience</span>
+</div>
+<h3 class="text-headline-md font-headline-md font-bold text-on-surface">Experience BingeBox at its absolute best</h3>
+<p class="text-body-md font-body-md text-on-surface-variant">
+              Full 4K HDR playback, lossless Dolby Atmos spatial mix, unthrottled streaming bitrate, and seamless offline downloads across up to 4 devices simultaneously.
+            </p>
+</div>
+<div class="flex items-center gap-3 flex-shrink-0">
+<button class="px-5 py-2.5 rounded-full bg-primary-container hover:bg-inverse-primary text-on-primary-container font-headline-md font-semibold text-body-md transition-all indigo-subtle-glow">
+              Compare Plans
+            </button>
+<button class="px-4 py-2.5 rounded-full bg-surface-container-high border border-outline-variant/30 text-on-surface text-body-md hover:border-outline transition-all">
+              Device Manager
+            </button>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- SECTION 7: INTERACTIVE SLIDE-IN TITLE DETAIL MODAL / QUICK DRAWER (Rendered and Toggleable) -->
+<div class="fixed inset-0 z-50 overflow-y-auto bg-surface-container-lowest/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 transition-opacity duration-300" id="modalGhostFrequency">
+<div class="bg-surface-container-low border border-outline-variant/30 rounded-2xl max-w-4xl w-full max-h-[942px] flex flex-col overflow-hidden shadow-2xl relative indigo-glow">
+<!-- Modal Close Button -->
+<button class="absolute top-4 right-4 z-30 w-9 h-9 rounded-full bg-surface-container-lowest/80 border border-outline-variant/40 flex items-center justify-center text-on-surface hover:text-primary transition-colors" onclick="toggleModal('modalGhostFrequency')">
+<span class="material-symbols-outlined text-xl" data-icon="close">close</span>
+</button>
+<!-- Simulated Video Player Viewport Container -->
+<div class="relative w-full aspect-video bg-black flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Cinematic ultra wide screenshot from Ghost Frequency featuring a subterranean bunker console room where illuminated spectral waveform graphs pulse in deep indigo light on dark slate monitors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgPSlkWHifxh1ng1TQBuQMj_Q3aamyb0LVwaqI1qDwgNkWGUwfaB9A7QZlR3Pw12SyOKrAY-GP8eiEjOmchMo2LeYSdgnqfIqFr9SvUUwCqh5XhhZmEHMVB2eVYN5bTWtM3_BWiuHoz-bnnAfmreTcA9vWfCLVuFWIFnrs0hgJUg2cNeqniI1HkgtPvUHOasuNJB1CnZSp6FU_9oJCpU9NJG-kav3bUCmVp312p1QLrJcOZcsVo1hmN0BfGMRW_eKcxs5pIuBZA1kZ"/>
+<!-- Top bar overlay in player -->
+<div class="absolute top-0 inset-x-0 p-4 bg-gradient-to-b from-black/80 to-transparent flex items-center justify-between text-white text-label-sm font-label-sm">
+<div class="flex items-center gap-2">
+<span class="bg-error text-white font-label-caps px-2 py-0.5 rounded font-bold">PREVIEW REEL</span>
+<span>Ghost Frequency • 4K Master Preview</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="bg-surface-container-high/90 px-2 py-0.5 rounded border border-outline-variant/40">Tier: Cinema UHD</span>
+</div>
+</div>
+<!-- Simulated Player Playback Controls Overlay -->
+<div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/95 via-black/60 to-transparent flex flex-col gap-2">
+<!-- Seek Scrubber with Buffered Bar -->
+<div class="w-full group/scrubber cursor-pointer">
+<div class="relative w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="absolute top-0 bottom-0 left-0 bg-outline-variant/60 w-3/4"></div>
+<div class="absolute top-0 bottom-0 left-0 bg-primary-container w-1/3"></div>
+</div>
+<div class="flex justify-between text-[11px] text-outline mt-1 font-label-sm">
+<span>00:38:12</span>
+<span>01:54:00</span>
+</div>
+</div>
+<!-- Controls row -->
+<div class="flex items-center justify-between text-white">
+<div class="flex items-center gap-4">
+<button class="hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-2xl" data-icon="play_arrow" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<button class="hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="replay_10">replay_10</span>
+</button>
+<button class="hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="forward_10">forward_10</span>
+</button>
+<div class="flex items-center gap-1.5 text-on-surface-variant hover:text-on-surface cursor-pointer">
+<span class="material-symbols-outlined text-xl" data-icon="volume_up">volume_up</span>
+<div class="w-16 h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="w-3/4 h-full bg-primary"></div>
+</div>
+</div>
+</div>
+<!-- Player Settings & Track Selectors -->
+<div class="flex items-center gap-3 text-label-sm font-label-sm">
+<!-- Stream Quality Toggle -->
+<span class="bg-primary-container/80 text-on-primary-container px-2 py-0.5 rounded text-label-caps font-label-caps">
+                4K UHD
+              </span>
+<!-- Audio selector -->
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-white">
+<span class="material-symbols-outlined text-base" data-icon="audiotrack">audiotrack</span>
+<span>Atmos 7.1</span>
+</button>
+<!-- Subs selector -->
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-white">
+<span class="material-symbols-outlined text-base" data-icon="subtitles">subtitles</span>
+<span>EN [CC]</span>
+</button>
+<button class="hover:text-primary">
+<span class="material-symbols-outlined text-xl" data-icon="fullscreen">fullscreen</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Error / Concurrency Notice Banner Inside Drawer -->
+<div class="bg-error-container/40 border-y border-error/30 px-4 py-2 flex items-center justify-between text-on-error-container text-body-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-lg" data-icon="warning">warning</span>
+<span class="text-label-sm font-label-sm">Notice: Concurrent stream limit reached on Standard Plan (2/2 active devices). Upgrade to Family 4K for 4 simultaneous streams.</span>
+</div>
+<button class="text-label-caps font-label-caps uppercase text-error underline hover:text-on-error-container flex-shrink-0 ml-2">Upgrade Now</button>
+</div>
+<!-- Drawer Scrollable Content Area -->
+<div class="p-6 overflow-y-auto custom-scrollbar space-y-6">
+<!-- Header & Metas -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<h3 class="text-headline-lg font-headline-lg text-on-surface">Ghost Frequency</h3>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1">
+              2024 • 1h 54m • Directed by Elena Vance • Psychological Sci-Fi / Mystery
+            </p>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-4 py-2 bg-on-surface text-surface-container-lowest font-headline-md font-bold rounded-full flex items-center gap-1.5 hover:bg-white transition">
+<span class="material-symbols-outlined text-lg" data-icon="play_arrow" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+<span>Start Feature</span>
+</button>
+<button class="p-2 rounded-full bg-surface-container-high border border-outline-variant/30 text-on-surface hover:text-primary">
+<span class="material-symbols-outlined text-xl" data-icon="bookmark_add">bookmark_add</span>
+</button>
+</div>
+</div>
+<!-- Navigation Tabs inside detail modal -->
+<div class="border-b border-outline-variant/20 flex gap-6 text-body-md font-body-md">
+<button class="text-primary font-semibold border-b-2 border-primary pb-2">Episodes &amp; Extras</button>
+<button class="text-on-surface-variant hover:text-on-surface pb-2 transition">Trailers &amp; Clips</button>
+<button class="text-on-surface-variant hover:text-on-surface pb-2 transition">Cast &amp; Crew</button>
+<button class="text-on-surface-variant hover:text-on-surface pb-2 transition flex items-center gap-1">
+<span>Ratings &amp; Reviews</span>
+<span class="text-[10px] bg-primary-container text-on-primary-container px-1.5 py-0.2 rounded">Eligible</span>
+</button>
+</div>
+<!-- Season selector and episode list -->
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<label class="text-label-caps font-label-caps uppercase text-outline">Season:</label>
+<select class="bg-surface-container-high border border-outline-variant/40 rounded-lg text-body-md text-on-surface px-3 py-1 outline-none focus:border-primary">
+<option selected="">Season 1 (8 Episodes)</option>
+<option>Season 2 (Current Broadcast)</option>
+</select>
+</div>
+<span class="text-label-sm font-label-sm text-outline">All audio channels verified</span>
+</div>
+<!-- Episode Cards List -->
+<div class="space-y-3">
+<!-- Ep 1 -->
+<div class="flex items-center gap-4 p-3 rounded-xl bg-surface-container border border-outline-variant/20 hover:border-primary/40 transition group">
+<span class="text-title-sm font-title-sm font-bold text-outline group-hover:text-primary w-6 text-center">1</span>
+<div class="w-32 aspect-video rounded-lg overflow-hidden bg-black flex-shrink-0 relative">
+<img class="w-full h-full object-cover" data-alt="Thumbnail showing an audio recording laboratory with glowing green spectral frequency oscilloscope and solitary headphones resting on a scarred mahogany desk." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAALraewBuCVXCX5y_7jL8oFpr7kf7XR_0x352ug8bnhY1YF7gl1wEd-gDldZlgQVRnKAI1mwabdZVddCyAGH00RBUHGXu8ryxU39lm0IVAeJnyVmFoXja1anDFHvrj6-EhSm7_Grtp85c7g7h2g7NkY-j1CFzflxdF3i3ZNblbK-JNqXKnruMMbG7Z4HN-SiF_hrNvBKzHGp15ljqm2PQTkbCmoZngYUQeXmsjB-pk_PRfbc696JsIlwq9e4tYv8tyQrdlg0JiYgRg"/>
+</div>
+<div class="flex-grow">
+<div class="flex items-center justify-between">
+<h5 class="text-title-sm font-title-sm font-semibold text-on-surface">Echo Chamber Protocol</h5>
+<span class="text-label-sm font-label-sm text-outline">52m</span>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant line-clamp-1 mt-0.5">A retired signals intelligence officer intercepts an encrypted audio loop transmitted on obsolete civil defense bands.</p>
+</div>
+<button class="p-2 rounded-full hover:bg-surface-container-high text-on-surface hover:text-primary">
+<span class="material-symbols-outlined text-xl" data-icon="download">download</span>
+</button>
+</div>
+<!-- Ep 2 -->
+<div class="flex items-center gap-4 p-3 rounded-xl bg-surface-container border border-outline-variant/20 hover:border-primary/40 transition group">
+<span class="text-title-sm font-title-sm font-bold text-outline group-hover:text-primary w-6 text-center">2</span>
+<div class="w-32 aspect-video rounded-lg overflow-hidden bg-black flex-shrink-0 relative">
+<img class="w-full h-full object-cover" data-alt="Thumbnail showing an abandoned radio relay tower standing silhouetted against a stormy twilight cloudscape with faint lightning discharges." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXbz-wEXmTWU80I3mLbchqBpqp21i3KhUpPkPwZ2kffxSoM3bVZ8biTFPmBa7FRHShjm0z87wbxGouuAt5iWh1XRVdO768rjNTttXJ2lCaAHu5_xJXGC0xvogQr3W1fBtYhHJY4UZMhY39LPP-eiZ_fqdXHivn20qVdF4G-hXALj8oGNAcD_l5KJp4KCsucKSKWZ2XfDal4kfN2lRDi37h07Q_QKn207d5gQUa-VEAJdTgR04JfJKGONKzNsWoS7vIG7X0_zXqsdbh"/>
+</div>
+<div class="flex-grow">
+<div class="flex items-center justify-between">
+<h5 class="text-title-sm font-title-sm font-semibold text-on-surface">Carrier Wave</h5>
+<span class="text-label-sm font-label-sm text-outline">48m</span>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant line-clamp-1 mt-0.5">Triangulation leads the team to a decommissioned salt mine containing an operational analog server array.</p>
+</div>
+<button class="p-2 rounded-full hover:bg-surface-container-high text-on-surface hover:text-primary">
+<span class="material-symbols-outlined text-xl" data-icon="download">download</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- SHARED COMPONENT: Footer -->
+<footer class="docked full-width bottom bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/15 dark:border-outline-variant/15 flat no shadows mt-16">
+<div class="w-full px-margin-mobile md:px-margin py-space-xl max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-space-md">
+<!-- Brand & Educational Disclaimer -->
+<div class="space-y-1 text-center md:text-left">
+<div class="text-headline-sm font-headline-sm font-bold text-on-surface dark:text-on-surface flex items-center justify-center md:justify-start gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="tv">tv</span>
+<span>BingeBox</span>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant dark:text-on-surface-variant max-w-md">
+          © 2024 BingeBox Inc. Simulated Educational Streaming Architecture. All rights reserved.
+        </p>
+</div>
+<!-- Links Array from JSON Anchor -->
+<div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-label-sm font-label-sm">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">Plan Comparison</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">Device Manager</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">Audio &amp; Subtitles</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">Staff Portal</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+<!-- Vanilla JavaScript Interactions -->
+<script>
+    // Modal toggle helper
+    function toggleModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        if (modal.classList.contains('hidden')) {
+          modal.classList.remove('hidden');
+          modal.classList.add('flex');
+        } else {
+          modal.classList.add('hidden');
+          modal.classList.remove('flex');
+        }
+      }
+    }
+
+    // Initialize modal state (open by default for direct showcase or closable)
+    document.addEventListener('DOMContentLoaded', () => {
+      const modal = document.getElementById('modalGhostFrequency');
+      // If user wants to start with modal closed:
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+
+      // Profile Mode Switcher (Kids vs Adult)
+      const profileBtn = document.getElementById('profileModeToggle');
+      const profileLabel = document.getElementById('profileModeLabel');
+      let isKids = false;
+
+      if (profileBtn && profileLabel) {
+        profileBtn.addEventListener('click', () => {
+          isKids = !isKids;
+          if (isKids) {
+            profileLabel.textContent = "Kids Active";
+            profileBtn.classList.add('bg-primary-container', 'text-on-primary-container');
+            profileBtn.classList.remove('bg-surface-container-high', 'text-on-surface');
+          } else {
+            profileLabel.textContent = "Kids";
+            profileBtn.classList.remove('bg-primary-container', 'text-on-primary-container');
+            profileBtn.classList.add('bg-surface-container-high', 'text-on-surface');
+          }
+        });
+      }
+    });
+
+    // Close modal on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const modal = document.getElementById('modalGhostFrequency');
+        if (modal && !modal.classList.contains('hidden')) {
+          modal.classList.add('hidden');
+          modal.classList.remove('flex');
+        }
+      }
+    });
+  </script>
+</body></html>

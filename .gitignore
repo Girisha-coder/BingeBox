@@ -1,0 +1,34 @@
+# Environment / secrets
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.pytest_cache/
+.benchmarks/
+.ruff_cache/
+
+# Virtual environments (not used per project rules, but guard anyway)
+.venv/
+venv/
+
+# Large binary media — placeholder .mp4 files are generated at runtime
+media/placeholder/*.mp4
+
+# Node / frontend build artefacts
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Docker volumes / local data
+pgdata/
+
+# OS artefacts
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

@@ -1,0 +1,14 @@
+{
+  "dataset": "shivamb/netflix-shows",
+  "source_url": "https://www.kaggle.com/datasets/shivamb/netflix-shows",
+  "download_url": "https://www.kaggle.com/api/v1/datasets/download/shivamb/netflix-shows",
+  "license": "CC0: Public Domain",
+  "dataset_last_updated": "2021-09-27T04:44:36.77Z",
+  "retrieved_at_utc": "2026-10-20T17:47:55.764352+00:00",
+  "source_rows_considered": 1000,
+  "retained_rows": 150,
+  "selection": "First 1000 source rows; valid movies only; runtime/year extremes, rating diversity, then deterministic random sample (seed 20261020). Not population-representative.",
+  "sample_sha256": "eed5a6f9395c8ab09e0d3c95abc8df9527a318c158263b701f603e535c7e7b17",
+  "archive_sha256": "1e5477bbbe868845be3b852d80eec2f1da6570340860668549a6dd5da0b00054",
+  "archive_retained": false
+}
