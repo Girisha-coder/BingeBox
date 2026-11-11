@@ -14,8 +14,8 @@ __pycache__/
 .venv/
 venv/
 
-# Large binary media — placeholder .mp4 files are generated at runtime
-media/placeholder/*.mp4
+# Large binary media stored via Git LFS — see .gitattributes
+# (no exclusion needed; *.mp4 is tracked by LFS)
 
 # Node / frontend build artefacts
 frontend/node_modules/
@@ -32,3 +32,4 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+
