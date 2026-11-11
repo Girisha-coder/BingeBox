@@ -69,3 +69,7 @@ Changed the catalogue from 18 to 20 titles per page using a single page-size con
 Reran `scripts/run_checks.py` in the existing `gpu_env`: **64 passed in 39.51s** against a newly created PostgreSQL test database. All numbered SQL installation scripts execute in that database; the fixture drops it afterward. The application database is not used for test mutations.
 
 Coverage includes schema/constraints, data loading, business functions/triggers, transaction rollback, date/progress/runtime boundaries, concurrency and SQL-backed API workflows. This is not proof of exhaustive SQL statement or branch coverage. In particular, `/home` executes up-next, recommendations and top-per-genre queries but currently asserts HTTP success rather than exact expected rows/rankings for each query. The four staff report endpoints likewise have execution checks without full expected-result/boundary assertions. Search/filter combinations are not exhaustively enumerated. No SQL coverage percentage has been measured.
+
+## Published to GitHub — 11 November 2026
+
+Initialised a Git repository and pushed 305 files to https://github.com/Girisha-coder/BingeBox. The .mp4 placeholder video files (601 MB) are excluded via .gitignore. A .env.example template is included; the real .env with secrets remains local only.
