@@ -10,12 +10,15 @@ __pycache__/
 .benchmarks/
 .ruff_cache/
 
-# Virtual environments (not used per project rules, but guard anyway)
+# Python virtual environment created by the README setup steps
 .venv/
 venv/
 
-# Large binary media stored via Git LFS — see .gitattributes
-# (no exclusion needed; *.mp4 is tracked by LFS)
+# Generated placeholder videos: the API recreates any missing one with ffmpeg
+# (scripts/prepare_media.py pre-generates all of them), so they are not committed.
+media/placeholder/*.mp4
+media/placeholder/*.tmp.mp4
+media/placeholder/font.ttf
 
 # Node / frontend build artefacts
 frontend/node_modules/
