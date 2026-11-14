@@ -73,3 +73,7 @@ Coverage includes schema/constraints, data loading, business functions/triggers,
 ## Published to GitHub — 11 November 2026
 
 Initialised a Git repository and pushed 305 files to https://github.com/Girisha-coder/BingeBox. The .mp4 placeholder video files (601 MB) are excluded via .gitignore. A .env.example template is included; the real .env with secrets remains local only.
+
+## Repository update - 15 November 2026
+
+The placeholder MP4s were added to the repository through Git LFS on 11 November, after the entry above. They have now been removed from Git again and are listed in `.gitignore`: the backend regenerates any missing placeholder with ffmpeg (and ignores Git LFS pointer files), so a clone without Git LFS still plays videos. The Kaggle CSV is now stored with fixed line endings (`.gitattributes`) so its checksum matches on every operating system. Setup instructions were rewritten in `README.md` for any machine; the `gpu_env` Conda environment mentioned above was specific to the original development machine.

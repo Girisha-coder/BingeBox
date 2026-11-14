@@ -523,12 +523,17 @@ def delete_rating(episode_id: int, request: Request):
     return {"ok": True}
 
 
+def usable_video(path):
+    # A Git LFS pointer (about 130 bytes of text) or a truncated file is not a video.
+    return path.is_file() and path.stat().st_size >= 1024
+
+
 def placeholder(runtime):
     target = MEDIA / "placeholder" / f"{runtime}.mp4"
-    if target.exists():
+    if usable_video(target):
         return target
     with media_lock:
-        if target.exists():
+        if usable_video(target):
             return target
         target.parent.mkdir(parents=True, exist_ok=True)
         temporary = target.with_suffix(".tmp.mp4")
