@@ -14,7 +14,7 @@ The project's focus is the database: an EER design mapped to **18 relations** in
 | Vedaang Kharya | 2024A8PS0511H |
 | Sanjay Rajkumar | 2024A8PS2044H |
 
-**Submitted version:** Git tag `final`. Its commit hash is recorded on the Demo Sheet.
+**Submitted version:** Git tag `final`, commit `37fa8f76d89cbfb82e01e65e4cdb6a9feed4276c` (also recorded on the Demo Sheet).
 
 ## Features
 
