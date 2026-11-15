@@ -33,47 +33,94 @@ GROUP BY p.plan_id
 ORDER BY p.monthly_price;
 
 -- =====================================================================================
--- Q2  Subscriptions ending in the next 7 days           SQL: 3-table JOIN + date range
---     Defined in : backend/app/queries.py line 23, REPORTS["lapsing"]
---     Run by     : backend/app/main.py lines 749-755, GET /api/admin/reports/lapsing
---     Shown in   : Studio -> Reports; frontend/src/Admin.jsx lines 508 and 538-539
+-- Q2  Account status: latest subscription, plan limits and current usage per account
+--     SQL: JOINs + correlated subqueries (COUNT of profiles and of live streams in the SELECT list,
+--          latest subscription through a LATERAL subquery) + a derived table (subquery in FROM)
+--     Defined in : db/06_views.sql lines 21-26, the query of the view v_account_status
+--     Run by     : backend/app/main.py line 299, GET /api/account (the signed-in account),
+--                  and line 718, GET /api/admin/accounts (line 713, the staff account list)
+--     Shown in   : Account page, frontend/src/main.jsx line 1143; Studio -> Accounts,
+--                  frontend/src/Admin.jsx line 403
+--     The inner query is the view's definition, unchanged; the outer SELECT only picks columns.
 -- =====================================================================================
-\echo '=== Q2  Subscriptions ending in the next 7 days ==='
-SELECT a.email, p.name AS plan, s.end_date, s.auto_renew
-FROM subscription s
-JOIN account a USING (account_id)
-JOIN plan p USING (plan_id)
-WHERE s.status = 'active' AND s.start_date <= CURRENT_DATE
-  AND s.end_date BETWEEN CURRENT_DATE AND CURRENT_DATE + 7
-ORDER BY s.end_date, a.email;
+\echo '=== Q2  Account status ==='
+SELECT email, plan_name, status, end_date, profile_count, max_profiles, live_streams, max_streams
+FROM (
+    SELECT a.account_id, a.email, a.suspended_at, s.sub_id, s.status, s.start_date, s.end_date, s.auto_renew,
+           p.plan_id, p.name AS plan_name, p.max_profiles, p.max_streams, p.max_quality, p.monthly_price,
+           (SELECT count(*)::INT FROM profile WHERE account_id = a.account_id) AS profile_count,
+           (SELECT count(*)::INT FROM stream_session ss JOIN profile pr USING (profile_id)
+             WHERE pr.account_id = a.account_id AND ss.ended_at IS NULL) AS live_streams
+    FROM account a
+    LEFT JOIN LATERAL (SELECT * FROM subscription WHERE account_id = a.account_id
+                       ORDER BY start_date DESC, sub_id DESC LIMIT 1) s ON TRUE
+    LEFT JOIN plan p USING (plan_id)
+) AS account_status
+ORDER BY account_id;
 
 -- =====================================================================================
--- Q3  Binge activity: completed episodes per profile and day   SQL: JOIN + GROUP BY + COUNT
---     Defined in : backend/app/queries.py line 24, REPORTS["binge"]
---     Run by     : backend/app/main.py lines 749-755, GET /api/admin/reports/binge
---     Shown in   : Studio -> Reports; frontend/src/Admin.jsx lines 508 and 538-539
+-- Q3  Catalogue details per title: runtime, seasons, episodes, genres, languages, ratings
+--     SQL: 7 JOINs + aggregation inside correlated (LATERAL) subqueries:
+--          SUM, COUNT(DISTINCT ...), COUNT, ARRAY_AGG, AVG
+--     Defined in : db/06_views.sql lines 1-14, the query of the view v_title_catalog
+--     Run by     : backend/app/main.py lines 401 and 405 (catalogue search, GET /api/catalog),
+--                  line 445 (title page, GET /api/catalog/{title_id}); Q4 and Q5 also read this view
+--     Shown in   : Browse/search page, frontend/src/main.jsx line 265; title page, main.jsx line 850
+--     The inner query is the view's definition, unchanged; the outer SELECT picks columns and
+--     keeps the 12 fictional titles (9 movies, 3 series) so that the output fits the screen.
 -- =====================================================================================
-\echo '=== Q3  Binge activity ==='
-SELECT p.profile_id, p.name, w.last_watched_at, count(*)::INT AS completed_episodes
-FROM watch_history w
-JOIN profile p USING (profile_id)
-WHERE w.episode_id IS NOT NULL AND w.completed
-GROUP BY p.profile_id, w.last_watched_at
-ORDER BY completed_episodes DESC, p.profile_id, w.last_watched_at DESC;
+\echo '=== Q3  Catalogue details per title ==='
+SELECT title_id, name, title_type, runtime_min, season_count, episode_count,
+       genres, audio_languages, user_rating, review_count
+FROM (
+    SELECT t.*, coalesce(m.duration_min, ep.runtime_min, 0)::INT AS runtime_min,
+           coalesce(ep.season_count, 0)::INT AS season_count, coalesce(ep.episode_count, 0)::INT AS episode_count,
+           coalesce(g.genres, ARRAY[]::VARCHAR[]) AS genres, coalesce(a.languages, ARRAY[]::VARCHAR[]) AS audio_languages,
+           coalesce(st.languages, ARRAY[]::VARCHAR[]) AS subtitle_languages,
+           r.user_rating, coalesce(r.review_count, 0)::INT AS review_count,
+           tr.source_ref AS trailer_ref, tr.provider AS trailer_provider
+    FROM title t LEFT JOIN movie m USING (title_id)
+    LEFT JOIN LATERAL (SELECT sum(duration_min) AS runtime_min, count(DISTINCT season_no) AS season_count,
+                              count(*) AS episode_count
+                       FROM episode WHERE series_id = t.title_id) ep ON TRUE
+    LEFT JOIN LATERAL (SELECT array_agg(name ORDER BY name) AS genres
+                       FROM genre JOIN title_genre USING (genre_id) WHERE title_id = t.title_id) g ON TRUE
+    LEFT JOIN LATERAL (SELECT array_agg(language ORDER BY language) AS languages
+                       FROM title_audio WHERE title_id = t.title_id) a ON TRUE
+    LEFT JOIN LATERAL (SELECT array_agg(language ORDER BY language) AS languages
+                       FROM title_subtitle WHERE title_id = t.title_id) st ON TRUE
+    LEFT JOIN LATERAL (SELECT round(avg(rating), 1) AS user_rating, count(*) AS review_count
+                       FROM title_review WHERE title_id = t.title_id) r ON TRUE
+    LEFT JOIN LATERAL (SELECT source_ref, provider FROM media_asset
+                       WHERE title_id = t.title_id AND asset_kind = 'trailer'
+                       ORDER BY asset_id LIMIT 1) tr ON TRUE
+) AS catalogue
+WHERE title_id <= 12
+ORDER BY title_id;
 
 -- =====================================================================================
--- Q4  Rating comparison: IMDb vs BingeBox users        SQL: query on a view that aggregates
---     Defined in : backend/app/queries.py line 25, REPORTS["rating-comparison"];
---                  the view v_title_catalog is db/06_views.sql lines 1-14, and line 13 computes
---                  AVG(rating) and COUNT(*) of reviews per title
---     Run by     : backend/app/main.py lines 749-755, GET /api/admin/reports/rating-comparison
---     Shown in   : Studio -> Reports; frontend/src/Admin.jsx lines 508 and 538-539
+-- Q4  Top titles in each genre
+--     SQL: CTE (WITH) + window function ROW_NUMBER() OVER (PARTITION BY genre ORDER BY rating)
+--          + JOINs (catalogue view, title_genre, genre)
+--     Defined in : backend/app/queries.py lines 11-14, TOP_GENRE
+--     Run by     : backend/app/main.py line 480, inside GET /api/home (line 467)
+--     Shown in   : Home page rows "Top 10 in <genre>"; frontend/src/main.jsx lines 421 and 456
+--     The backend fills %s with the profile's age limit (18 here). The app keeps the top 10 of
+--     every genre; to fit the screen, the outer WHERE below keeps the top 3 of three genres.
 -- =====================================================================================
-\echo '=== Q4  Rating comparison ==='
-SELECT name, imdb_rating, imdb_votes, user_rating, review_count
-FROM v_title_catalog
-WHERE review_count > 0
-ORDER BY review_count DESC, title_id;
+\echo '=== Q4  Top titles in each genre ==='
+WITH ranked AS (
+    SELECT v.title_id, v.name, v.release_year, v.genres, v.imdb_rating, g.name AS genre,
+           row_number() OVER (PARTITION BY g.genre_id
+                              ORDER BY v.imdb_rating DESC NULLS LAST, v.title_id) AS rank
+    FROM v_title_catalog v
+    JOIN title_genre tg USING (title_id)
+    JOIN genre g USING (genre_id)
+    WHERE v.age_rating <= 18)
+SELECT genre, rank, name, release_year, imdb_rating
+FROM ranked
+WHERE rank <= 3 AND genre IN ('Comedy', 'Drama', 'Thriller')
+ORDER BY genre, rank;
 
 -- =====================================================================================
 -- Q5  "Recommended for you" for Kabir's profile
