@@ -61,7 +61,7 @@ After setup the database holds **840 rows** across the 18 tables. The design, it
 
 ## Setup and run
 
-**Prerequisites:** Docker Desktop (running), Python 3.12 or newer, and Git. Git LFS is not needed.
+**Prerequisites:** Docker Desktop (running), Python 3.12 or newer, and Git. Git LFS is not needed. No Docker? See [Running without Docker (Windows)](#running-without-docker-windows).
 
 Windows (PowerShell), from the folder where you want the project:
 
@@ -108,6 +108,41 @@ Notes:
   .venv\Scripts\python.exe scripts\import_kaggle.py
   ```
 
+## Running without Docker (Windows)
+
+For a computer without Docker. The same database, backend and website run directly on Windows, started by [`scripts/start_local.ps1`](scripts/start_local.ps1). Use a project folder for one method only: the setup points `.env` at the local PostgreSQL port, which the Docker setup would then also try to use.
+
+**1. Install the programs (once).** In any PowerShell window:
+
+```powershell
+winget install PostgreSQL.PostgreSQL.16
+winget install Python.Python.3.12
+winget install Gyan.FFmpeg
+winget install OpenJS.NodeJS.LTS
+```
+
+Accept the prompts (type `Y` for winget's terms and allow the installers to make changes). The PostgreSQL package installs version 16, the same as in Docker, on port 5432 with the superuser `postgres` and the password `postgres`. Skip any program that is already installed. Afterwards, close and reopen VS Code or the terminal so that the new programs are found.
+
+**2. Download and set up the project (once).** From the folder where you want the project, for example in the VS Code terminal:
+
+```powershell
+git clone https://github.com/Girisha-coder/BingeBox.git
+cd BingeBox
+powershell -ExecutionPolicy Bypass -File scripts\start_local.ps1 -Setup
+```
+
+`-ExecutionPolicy Bypass` lets Windows run the script without changing any system setting. The script asks once for the `postgres` password (`postgres` after the winget install; nothing is shown while typing). It then creates `.env`, creates the database user and database `bingebox`, runs every SQL file in `db/` in order, installs the Python and website packages, and loads the 840 demonstration rows. Running it again skips the steps already done. If PostgreSQL uses a port other than 5432, add `-DbPort <port>`.
+
+**3. Start BingeBox (every time).**
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\start_local.ps1
+```
+
+This starts the backend and the website in the same terminal and opens **http://127.0.0.1:5173**. Use that address exactly, not `localhost`: the backend accepts sign-ins only from the address it was started for. Press **Ctrl+C** to stop both. PostgreSQL keeps running in the background as a Windows service.
+
+The demo logins and the tests below work the same way. If the script reports that port 18000 or 5173 is in use, stop the other program first, for example the Docker version with `docker compose stop`.
+
 ## Demo logins
 
 All demo accounts use the password **`BingeBox-Demo-2026!`**. Tick "Staff account" on the sign-in page for the staff logins.
@@ -136,7 +171,7 @@ A step-by-step demonstration script is in [`docs/demo-guide.md`](docs/demo-guide
 
 ## Tests
 
-With the project running in Docker:
+With the project running, in Docker or locally after `start_local.ps1 -Setup`:
 
 ```powershell
 .venv\Scripts\python.exe -m pip install -r requirements.txt
@@ -144,7 +179,7 @@ With the project running in Docker:
 .venv\Scripts\python.exe scripts\run_checks.py
 ```
 
-This runs 136 database and API tests (constraints, triggers, functions, query results, concurrency, roles), each on a temporary database created on the Docker PostgreSQL server and dropped afterwards. It never touches the application database.
+This runs 136 database and API tests (constraints, triggers, functions, query results, concurrency, roles), each on a temporary database created on the project's PostgreSQL server and dropped afterwards. It never touches the application database.
 
 The 11 browser tests (`scripts/run_browser_checks.py`) additionally need Node.js and ffmpeg on the computer: run `npm ci` and `npx playwright install chromium` in `frontend/` first. See [`docs/test-results.md`](docs/test-results.md).
 
