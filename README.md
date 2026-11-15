@@ -56,6 +56,7 @@ The database server runs in the `db` container. Its data is kept in the Docker v
 | [`backend/app/main.py`](backend/app/main.py) | All API routes and the catalogue search query |
 | [`scripts/seed_demo.py`](scripts/seed_demo.py) | 200 fictional demonstration rows (accounts, staff, titles, history, reviews) |
 | [`scripts/import_kaggle.py`](scripts/import_kaggle.py) | 640 rows for 150 real Netflix movies from a CC0 Kaggle sample in `data/kaggle/` |
+| [`scripts/demo_queries.sql`](scripts/demo_queries.sql) | The five demonstration queries and three DBMS features, ready to run; changes no data (see [Demo queries](#demo-queries)) |
 
 After setup the database holds **840 rows** across the 18 tables. The design, its assumptions and the normalisation are described in the Database Design Document (submitted separately) and in [`docs/normalisation.md`](docs/normalisation.md) and [`docs/decisions.md`](docs/decisions.md). The mid-sem design is in [`docs/reference/`](docs/reference/).
 
@@ -143,6 +144,24 @@ This starts the backend and the website in the same terminal and opens **http://
 
 The demo logins and the tests below work the same way. If the script reports that port 18000 or 5173 is in use, stop the other program first, for example the Docker version with `docker compose stop`.
 
+**Reset the demo data.** The demo data is dated relative to the day it was loaded (see the dates note under [Setup and run](#setup-and-run)), so reload it shortly before a demonstration. Stop BingeBox with Ctrl+C, then from the project folder:
+
+```powershell
+& "C:\Program Files\PostgreSQL\16\bin\psql.exe" -h 127.0.0.1 -U postgres -c "DROP DATABASE bingebox WITH (FORCE)"
+powershell -ExecutionPolicy Bypass -File scripts\start_local.ps1 -Setup
+powershell -ExecutionPolicy Bypass -File scripts\start_local.ps1
+```
+
+The first line deletes the database (password `postgres`), the second rebuilds it with fresh demo data, and the third starts BingeBox again.
+
+**SQL prompt and demo queries.** With BingeBox running, open a second terminal in the project folder:
+
+```powershell
+& "C:\Program Files\PostgreSQL\16\bin\psql.exe" -h 127.0.0.1 -U postgres -d bingebox
+```
+
+Enter the password `postgres`. When the prompt shows `bingebox=#`, type SQL directly, or run the demonstration file with `\i scripts/demo_queries.sql` (see [Demo queries](#demo-queries)). `\q` leaves the prompt. If a different PostgreSQL version is installed, change `16` in the path.
+
 ## Demo logins
 
 All demo accounts use the password **`BingeBox-Demo-2026!`**. Tick "Staff account" on the sign-in page for the staff logins.
@@ -168,6 +187,24 @@ All demo accounts use the password **`BingeBox-Demo-2026!`**. Tick "Staff accoun
 | W3 Playback and integrity | Integrity enforcement | Device limit, kids age limit, resume, completion at 90%, reviews only after finishing | `start_session`, `start_playback`, `record_progress` and the triggers `watch_age_check`, `watch_progress`, `review_requires_watch`, `eprating_requires_watch` in `db/05_workflows.sql` |
 
 A step-by-step demonstration script is in [`docs/demo-guide.md`](docs/demo-guide.md).
+
+## Demo queries
+
+[`scripts/demo_queries.sql`](scripts/demo_queries.sql) runs the five SQL queries and the three DBMS features used in the demonstration, plus one index check. Each block names the file and lines where its SQL is written, the backend code that runs it and the screen that shows it. It changes no data: anything that would change data is refused by the database or runs inside `BEGIN ... ROLLBACK`.
+
+| Part | Contents |
+| --- | --- |
+| Q1-Q4 | The four staff reports: active subscriptions per plan, subscriptions ending within 7 days, binge activity, rating comparison (`backend/app/queries.py` lines 22-25) |
+| Q5 | Recommendations for one profile: CTE, nested subqueries, GROUP BY (`backend/app/queries.py` lines 15-20) |
+| F1 | Trigger `profile_limit` refusing a third profile on the Duo plan |
+| F2 | Stored procedure `change_plan` as one transaction: a refused downgrade, then an upgrade undone by ROLLBACK |
+| F3 | View `v_guest_catalog`: what a guest sees, compared with the base table |
+| Bonus | Partial unique index `subscription_one_current`: a second current subscription is refused |
+
+To run it:
+
+- **With Docker:** `Get-Content scripts\demo_queries.sql | docker compose exec -T db psql -U bingebox -d bingebox`
+- **Without Docker:** open the SQL prompt as described in [Running without Docker](#running-without-docker-windows), then `\i scripts/demo_queries.sql`.
 
 ## Tests
 
