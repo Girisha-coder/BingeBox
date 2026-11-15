@@ -194,11 +194,11 @@ A step-by-step demonstration script is in [`docs/demo-guide.md`](docs/demo-guide
 
 | Part | Contents |
 | --- | --- |
-| Q1 | Staff report of active subscriptions per plan: LEFT JOIN, GROUP BY, COUNT (`backend/app/queries.py` line 22) |
-| Q2 | Account status: each account's latest subscription, plan limits and current usage, using correlated subqueries (the query of the view `v_account_status`, `db/06_views.sql` lines 21-26) |
-| Q3 | Catalogue details per title: seven joins with SUM, COUNT, ARRAY_AGG and AVG inside subqueries (the query of the view `v_title_catalog`, `db/06_views.sql` lines 1-14) |
-| Q4 | Top titles in each genre: CTE and the window function `ROW_NUMBER() OVER (PARTITION BY ...)` (`backend/app/queries.py` lines 11-14) |
-| Q5 | Recommendations for one profile: CTE, nested subqueries, GROUP BY (`backend/app/queries.py` lines 15-20) |
+| Q1 | Staff report of active subscriptions per plan: LEFT JOIN, GROUP BY, COUNT (`backend/app/queries.py` lines 45-50) |
+| Q2 | Staff report of subscriptions ending in the next 7 days: three-table JOIN with a date range (`backend/app/queries.py` lines 51-57) |
+| Q3 | Continue watching: each profile's latest unfinished movie or episode, using a CTE, the window function `ROW_NUMBER()` and three joins (the query of the view `v_continue_watching`, `db/06_views.sql` lines 28-34) |
+| Q4 | Top titles in each genre: CTE and the window function `ROW_NUMBER() OVER (PARTITION BY ...)` (`backend/app/queries.py` lines 19-28) |
+| Q5 | Recommendations for one profile: CTE, nested subqueries, GROUP BY (`backend/app/queries.py` lines 30-42) |
 | F1 | Trigger `profile_limit` refusing a third profile on the Duo plan |
 | F2 | Stored procedure `change_plan` as one transaction: a refused downgrade, then an upgrade undone by ROLLBACK |
 | F3 | View `v_guest_catalog`: what a guest sees, compared with the base table |
